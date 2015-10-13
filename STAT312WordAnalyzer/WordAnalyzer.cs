@@ -10,8 +10,7 @@ namespace STAT312WordAnalyzer
     {
         public static float WordComplexity(Word word)
         {
-            int length = word.Length;
-            return length;
+            return (float)word.UniqueChars / (float)word.Length;
         }
     }
 }

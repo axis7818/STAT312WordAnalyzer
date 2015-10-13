@@ -11,11 +11,19 @@ namespace TestBed
     {
         static void Main(string[] args)
         {
-            Word testWord = new Word("apple");
-            Console.WriteLine(testWord);
-            Console.WriteLine(testWord.Length);
-            Console.WriteLine(testWord.UniqueChars);
+            Console.WriteLine("\t\tWord Analyzer Test Bed");
+            Console.WriteLine();
 
+            Console.Write("Enter a word: ");
+            string testString = Console.ReadLine();
+
+            Word testWord = new Word(testString);
+            Console.WriteLine("word: \t\t\t" + testWord);
+            Console.WriteLine("length: \t\t" + testWord.Length);
+            Console.WriteLine("unique characters:\t" + testWord.UniqueChars);
+            Console.WriteLine("complexity:\t\t" + WordAnalyzer.WordComplexity(testWord));
+
+            Console.WriteLine();
             Console.Write("Press any key to quit...");
             Console.ReadKey();
         }
