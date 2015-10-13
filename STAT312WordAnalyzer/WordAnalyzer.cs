@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace STAT312WordAnalyzer
+﻿namespace STAT312WordAnalyzer
 {
     public static class WordAnalyzer
     {

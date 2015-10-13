@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using STAT312WordAnalyzer;
 
 namespace TestBed
@@ -14,18 +10,29 @@ namespace TestBed
             Console.WriteLine("\t\tWord Analyzer Test Bed");
             Console.WriteLine();
 
-            Console.Write("Enter a word: ");
-            string testString = Console.ReadLine();
+            bool isRunning = true;
 
-            Word testWord = new Word(testString);
-            Console.WriteLine("word: \t\t\t" + testWord);
-            Console.WriteLine("length: \t\t" + testWord.Length);
-            Console.WriteLine("unique characters:\t" + testWord.UniqueChars);
-            Console.WriteLine("complexity:\t\t" + WordAnalyzer.WordComplexity(testWord));
+            while (isRunning)
+            {
+                Console.Write("Enter a word ('q' to quit): ");
+                string testString = Console.ReadLine();
+                if (testString.Equals("q"))
+                {
+                    isRunning = false;
+                }
+                else
+                {
+                    Word testWord = new Word(testString);
+                    Console.WriteLine("word: \t\t\t" + testWord);
+                    Console.WriteLine("length: \t\t" + testWord.Length);
+                    Console.WriteLine("unique characters:\t" + testWord.UniqueChars);
+                    Console.WriteLine("complexity:\t\t" + WordAnalyzer.WordComplexity(testWord));
+                }
 
-            Console.WriteLine();
-            Console.Write("Press any key to quit...");
-            Console.ReadKey();
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Quitting...");
         }
     }
 }
