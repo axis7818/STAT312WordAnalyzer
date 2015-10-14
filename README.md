@@ -36,7 +36,10 @@ I also posted a schedule with a basic outline of tasks we should complete. Hopef
 
 It would also be great if people could come up with some ideas for how to get random text from Twitter, Scholarly Journals, Wikipedia, Reddit, and any other sources you can think of (the more the better).
 
-##### [Word Complexity](https://github.com/axis7818/STAT312WordAnalyzer/blob/master/WordComplexity.md)
+Some other links:
+[Word Complexity Algorithm](https://github.com/axis7818/STAT312WordAnalyzer/blob/master/WordComplexity.md)
+[Word Sources](https://github.com/axis7818/STAT312WordAnalyzer/blob/master/DataRetrieval.md)
+
 
 Thanks everyone!<br/>
 \- Cameron Taylor
