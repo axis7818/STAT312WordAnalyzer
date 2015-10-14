@@ -1,3 +1,11 @@
 # STAT312WordAnalyzer
-Code for stat 312 project
+
+## Members
+Cameron Taylor
+David Pieper
+Khoa Nguyen 
+Matt Seno
+Brad Harris
+
+
 
