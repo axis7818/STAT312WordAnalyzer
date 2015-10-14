@@ -35,7 +35,7 @@ figured out, so let me know if people have suggestions on what parameters make a
 It would also be great if people could come up with some ideas for how to get random text from Twitter, Scholarly Journals, Wikipedia, Reddit, and any other sources you can think of (the more the better).
 
 Thanks everyone!
-\n\- Cameron Taylor
+\- Cameron Taylor
 
 
 
