@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace STAT312WordAnalyzer
 {
-    public class Word
+    public class Word : IEnumerable
     {
         private string _word;
 
@@ -41,6 +43,12 @@ namespace STAT312WordAnalyzer
         public override string ToString()
         {
             return _word;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            foreach (char c in _word)
+                yield return c;
         }
     }
 }

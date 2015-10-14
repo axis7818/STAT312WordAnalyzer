@@ -26,6 +26,8 @@ namespace TestBed
                     Console.WriteLine("word: \t\t\t" + testWord);
                     Console.WriteLine("length: \t\t" + testWord.Length);
                     Console.WriteLine("unique characters:\t" + testWord.UniqueChars);
+                    Console.WriteLine("vowels:\t\t\t" + WordAnalyzer.VowelCount(testWord));
+                    Console.WriteLine("consonants:\t\t" + WordAnalyzer.ConsonantCount(testWord));
                     Console.WriteLine("complexity:\t\t" + WordAnalyzer.WordComplexity(testWord));
                 }
 
