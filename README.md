@@ -1,5 +1,13 @@
 # STAT312WordAnalyzer
 
+## Project Description
+We want to analyze the complexity of words based on their source, proportion of vowels, \(etc?\). We will use the 
+length of the word as a basic measure of the word’s complexity and this will be our response variable for 
+all questions. 
+* What effect does word source have on Complexity? \(Wikipedia, Scholarly Journal, social media \(twitter\), reddit, etc.\)
+* What effect does the proportion of vowels in a word have on Complexity?
+* More? Words than end in “ing” or other suffix.
+
 ## Members
 * Cameron Taylor
 * David Pieper
