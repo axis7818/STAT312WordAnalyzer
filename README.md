@@ -34,7 +34,7 @@ Khoa has agreed to reserve a fishbowl in the library from 2-4 every wednesday fo
 
 I also posted a schedule with a basic outline of tasks we should complete. Hopefuly we can keep to it and be done a week before the final presentation. By next Monday, I think it would be awesome to have our complexity algorithm figured out, so let me know if people have suggestions on what parameters make a word less or more complex. 
 
-It would also be great if people could come up with some ideas for how to get random text from Twitter, Scholarly Journals, Wikipedia, Reddit, and any other sources you can think of (the more the better).
+It would also be great if people could come up with some ideas for how to get random text from Twitter, Scholarly Journals, Wikipedia, Reddit, and any other sources you can think of (the more the better). The links at the bottom of this post have our current ideas.
 
 Some other links:
 * [Word Complexity Algorithm](https://github.com/axis7818/STAT312WordAnalyzer/blob/master/WordComplexity.md)
