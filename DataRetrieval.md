@@ -13,7 +13,7 @@ Multi stage cluster sampling
 2. Randomly generate a number \(from 1 to _infinity_\). This number will be the number of the post that we look at. If the number is larger than the number of posts, then we will "wrap" the numbers. So if the number is 17, and there are 10 posts, then we will look at post 7.
 3. randomly select _n_ words from the comment secion.
 
-We still need an idea for how to collect from:
+#### We still need an idea for how to collect from:
 * Twitter
 * Scholarly Articles and Journals
 * Other potential sources
