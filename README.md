@@ -15,7 +15,7 @@ We want to analyze the complexity of words based on their source, proportion of 
 
 ## Schedule
 |Completed	|Date	|Item to Complete	|
-|----------|-------|-----------------------|
+|:----------:|-------|-----------------------|
 |![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Oct 14	|Project Proposal	|
 ||Oct 19	|Complexity Analysis Completed|
 ||Nov 2	|Data Collection Program Completed|
