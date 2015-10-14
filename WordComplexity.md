@@ -7,3 +7,5 @@ We need ideas for what factors affect the complexity of a word If you have any i
   * repeating characters (WHEEEEEEE!)
   * repeating sequences (Banana)
 * number of syllables 
+
+Once we have gathered all of these parameters, we can pretty simply come up with an algorithm to compute a measure of "Word Complexity".
