@@ -14,15 +14,15 @@ We want to analyze the complexity of words based on their source, proportion of 
 * Brad Harris
 
 ## Schedule
-|Date	|Item to Complete	|
-|-------|-----------------------|
-|Oct 14	|Project Proposal	|
-|Oct 19	|Complexity Analysis Completed|
-|Nov 2	|Data Collection Program Completed|
-|Nov 9	|Project Update (Pilot Study and Power Analysis)|
-|Nov 16	|Data for Final Project Collected in a Minitab File|
-|Nov 30	|Presentation Completed and Practiced at least Once|
-|Dec 7	|Final Presentation	|
+|Completed	|Date	|Item to Complete	|
+|----------|-------|-----------------------|
+|----------|Oct 14	|Project Proposal	|
+|----------|Oct 19	|Complexity Analysis Completed|
+|----------|Nov 2	|Data Collection Program Completed|
+|----------|Nov 9	|Project Update (Pilot Study and Power Analysis)|
+|----------|Nov 16	|Data for Final Project Collected in a Minitab File|
+|----------|Nov 30	|Presentation Completed and Practiced at least Once|
+|----------|Dec 7	|Final Presentation	|
 
 ## Updates
 #### 14 October 2015
