@@ -16,7 +16,7 @@ We want to analyze the complexity of words based on their source, proportion of 
 ## Schedule
 |Completed	|Date	|Item to Complete	|
 |----------|-------|-----------------------|
-||Oct 14	|Project Proposal	|
+|![yes](https://upload.wikimedia.org/wikipedia/commons/b/b0/Light_green_check.svg)|Oct 14	|Project Proposal	|
 ||Oct 19	|Complexity Analysis Completed|
 ||Nov 2	|Data Collection Program Completed|
 ||Nov 9	|Project Update (Pilot Study and Power Analysis)|
