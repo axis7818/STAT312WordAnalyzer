@@ -5,7 +5,7 @@ namespace STAT312WordAnalyzer
 {
     public static class WordAnalyzer
     {
-        private static readonly char[] vowels = { 'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u' };
+        private static readonly HashSet<char> vowels = new HashSet<char>() { 'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u' };
 
         public static int VowelCount(Word word)
         {

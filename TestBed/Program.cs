@@ -7,14 +7,17 @@ namespace TestBed
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("\t\tWord Analyzer Test Bed");
+            Console.WriteLine("\tWord Analyzer Test Bed");
+            Console.WriteLine("\tEnter a word to get information.");
+            Console.WriteLine("\tPress 'q' to quit.");
+            Separator(true);
             Console.WriteLine();
 
             bool isRunning = true;
 
             while (isRunning)
             {
-                Console.Write("Enter a word ('q' to quit): ");
+                Console.Write("> ");
                 string testString = Console.ReadLine();
                 if (testString.Equals("q"))
                 {
@@ -23,18 +26,32 @@ namespace TestBed
                 else
                 {
                     Word testWord = new Word(testString);
-                    Console.WriteLine("word: \t\t\t" + testWord);
-                    Console.WriteLine("length: \t\t" + testWord.Length);
-                    Console.WriteLine("unique characters:\t" + testWord.UniqueChars);
-                    Console.WriteLine("vowels:\t\t\t" + WordAnalyzer.VowelCount(testWord));
-                    Console.WriteLine("consonants:\t\t" + WordAnalyzer.ConsonantCount(testWord));
-                    Console.WriteLine("complexity:\t\t" + WordAnalyzer.WordComplexity(testWord));
+                    Separator();
+                    Console.WriteLine("\tlength: \t\t" + testWord.Length);
+                    Console.WriteLine("\tunique characters:\t" + testWord.UniqueChars);
+                    Separator();
+                    Console.WriteLine("\tvowels:\t\t\t" + WordAnalyzer.VowelCount(testWord));
+                    Console.WriteLine("\tconsonants:\t\t" + WordAnalyzer.ConsonantCount(testWord));
+                    Separator();
+                    Console.WriteLine("\tcomplexity:\t\t" + WordAnalyzer.WordComplexity(testWord));
+                    Separator();
                 }
-
-                Console.WriteLine();
+                Console.WriteLine("\n");
             }
 
             Console.WriteLine("Quitting...");
+        }
+
+        static void Separator(bool bold = false)
+        {
+            if (bold)
+            {
+                Console.WriteLine("//////////////////////////////////////////////////");
+            }
+            else
+            {
+                Console.WriteLine("--------------------------------------------------");
+            }            
         }
     }
 }
