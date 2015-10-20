@@ -37,6 +37,7 @@ namespace MinitabDataGenerationTest
             Console.WriteLine("Generating output...");
             Stopwatch sw = new Stopwatch();
             sw.Start();
+            int wordCount = 0;
             writer.WriteLine("word\tcomplexity");
             while (!reader.EndOfStream)
             {
@@ -48,6 +49,7 @@ namespace MinitabDataGenerationTest
                     {
                         float complexity = WordAnalyzer.WordComplexity(w);
                         writer.WriteLine(s + "\t" + complexity.ToString());
+                        wordCount++;
                     }                    
                 }
             }
@@ -55,14 +57,13 @@ namespace MinitabDataGenerationTest
             sw.Stop();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Output successfully generated.");
-            Console.WriteLine("Output took: " + sw.Elapsed.ToString() + " to complete.");
+            Console.WriteLine("Output took: " + sw.Elapsed.ToString() + " to analyze " + wordCount.ToString() + " words.");
             Console.ResetColor();
 
             // quit
             END:
             Console.Write("Press any key to quit...");
             Console.ReadKey();
-
         }
     }
 }
