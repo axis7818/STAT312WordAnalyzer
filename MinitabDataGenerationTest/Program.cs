@@ -48,7 +48,7 @@ namespace MinitabDataGenerationTest
                     if (!string.IsNullOrWhiteSpace(w.ToString()))
                     {
                         float complexity = WordAnalyzer.WordComplexity(w);
-                        writer.WriteLine(s + "\t" + complexity.ToString());
+                        writer.WriteLine(w.ToString() + "\t" + complexity.ToString());
                         wordCount++;
                     }                    
                 }
