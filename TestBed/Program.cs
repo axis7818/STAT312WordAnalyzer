@@ -17,8 +17,6 @@ namespace TestBed
 
             while (isRunning)
             {
-                
-
                 Console.Write("> ");
                 string testString = Console.ReadLine();
                 if (testString.Equals("q"))
