@@ -17,6 +17,8 @@ namespace TestBed
 
             while (isRunning)
             {
+                
+
                 Console.Write("> ");
                 string testString = Console.ReadLine();
                 if (testString.Equals("q"))
@@ -42,7 +44,9 @@ namespace TestBed
                     Console.WriteLine("\tsyllables:\t\t" + WordAnalyzer.SyllableCount(testWord));
                     Console.ResetColor();
                     Separator();
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\tcomplexity:\t\t" + WordAnalyzer.WordComplexity(testWord));
+                    Console.ResetColor();
                     Separator();
                 }
                 Console.WriteLine("\n");

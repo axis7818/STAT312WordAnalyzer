@@ -13,7 +13,7 @@ namespace STAT312WordAnalyzer
         
         public Word(string word)
         {
-            _word = word;
+            _word = WordAnalyzer.FormatWord(word);
 
             // add the characters to the Chars HashSet
             for(int i = 0; i < _word.Length; i++)

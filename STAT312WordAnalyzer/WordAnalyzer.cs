@@ -25,7 +25,7 @@ namespace STAT312WordAnalyzer
 
         private static readonly Regex CharRepeatFinder = new Regex("(\\w)(\\1+)");
 
-        private static readonly Regex SequenceRepeatFinder = new Regex("(\\w{2,})(\\1+)");
+        private static readonly Regex SequenceRepeatFinder = new Regex("(\\w{2,}?)(\\1+)");
         #endregion Fields
 
         #region Methods
@@ -53,6 +53,14 @@ namespace STAT312WordAnalyzer
         {
             string result = "";
             foreach (Match m in AlphaCheck.Matches(word.ToString().ToLower().Trim()))
+                result += m.Value;
+            return result;
+        }
+
+        public static string FormatWord(string s)
+        {
+            string result = "";
+            foreach (Match m in AlphaCheck.Matches(s.ToLower().Trim()))
                 result += m.Value;
             return result;
         }
@@ -104,12 +112,12 @@ namespace STAT312WordAnalyzer
 
         public static float WordComplexity(Word word)
         {
-            return UniquenessFactor(word) * ScrabbleScore(word);
+            return UniquenessFactor(word) * (ScrabbleScore(word) + (float)word.Length - SequentialCharRepeats(word)) / (SequenceRepeats(word) + 1.0f);
         }
 
         public static float UniquenessFactor(Word word)
         {
-            return (float)word.UniqueChars / (float)word.Length;
+            return (float)word.UniqueChars / word.Length;
         }
         #endregion Methods
     }
