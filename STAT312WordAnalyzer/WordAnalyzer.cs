@@ -7,25 +7,31 @@ namespace STAT312WordAnalyzer
 {
     public static class WordAnalyzer
     {
+        #region Fields
         private static readonly Dictionary<char, int> LetterValues = new Dictionary<char, int>()
         {
-            {'a', 1 }, {'b', 3 }, {'c', 3 }, {'d', 2 }, {'e', 1 }, {'f', 4 }, {'g', 2 }, {'h', 4 },
-            {'i', 1 }, {'j', 1 }, {'k', 5 }, {'l', 1 }, {'m', 3 }, {'n', 1 }, {'o', 1 }, {'p', 3 },
-            {'q', 10 }, {'r', 1 }, {'s', 1 }, {'t', 1 }, {'u', 1 }, {'v', 4 }, {'w', 4 }, {'x', 8 },
-            {'y', 4 }, {'z', 10 }
+            {'a', 1 }, {'b', 3 }, {'c', 3 }, {'d', 2 }, {'e', 1 }, {'f', 4 }, {'g', 2 }, {'h', 4 }, {'i', 1 },
+            { 'j', 1 }, {'k', 5 }, {'l', 1 }, {'m', 3 }, {'n', 1 }, {'o', 1 }, {'p', 3 }, {'q', 10 }, { 'r', 1 },
+            { 's', 1 }, {'t', 1 }, {'u', 1 }, {'v', 4 }, {'w', 4 }, {'x', 8 }, {'y', 4 }, {'z', 10 }
         };
 
         private const string VowelString = "aeiou";
 
         private static readonly HashSet<char> Vowels = new HashSet<char>() { 'a', 'e', 'i', 'o', 'u' };
-
-        // Matches a 'y' that is not surrounded by other 'non-y' vowels
+        
         private static readonly Regex YVowelCheck = new Regex("(?<![" + VowelString + "])[y](?![" + VowelString + "])");
         
-        // matches a sequence of alphabetic characters
         private static readonly Regex AlphaCheck = new Regex("[A-Za-z]+");
 
-        private static string FormatWord(Word word)
+        private static readonly Regex SyllableCheck = new Regex("(?<![" + VowelString + "])[" + VowelString + "]+");
+
+        private static readonly Regex SilentEndVowelCheck = new Regex("^.*[" + VowelString + "][ls]e$");
+
+        private static readonly Regex IOCheck = new Regex("io");
+        #endregion Fields
+
+        #region Methods
+        public static string FormatWord(Word word)
         {
             string result = "";
             foreach (Match m in AlphaCheck.Matches(word.ToString().ToLower().Trim()))
@@ -33,13 +39,36 @@ namespace STAT312WordAnalyzer
             return result;
         }
 
-        public static int ScrabbleCount(Word word)
+        public static int ScrabbleScore(Word word)
         {
             int count = 0;
             foreach(char c in FormatWord(word))
             {
+                // add the scores of each letter
                 count += LetterValues[c];
             }
+            return count;
+        }
+
+        public static int SyllableCount(Word word)
+        {
+            // get the formatted word
+            string formatted = FormatWord(word);
+
+            // check for syllables
+            int count = SyllableCheck.Matches(formatted).Count;
+
+            // check for 'y' syllables
+            count += YVowelCheck.Matches(formatted).Count;
+
+            // check for a "[VOWEL]le" ending
+            if (SilentEndVowelCheck.IsMatch(formatted))
+                count--;
+
+            // check for "io" pairs
+            if (IOCheck.IsMatch(formatted))
+                count++;
+
             return count;
         }
         
@@ -71,28 +100,15 @@ namespace STAT312WordAnalyzer
             return word.Length - VowelCount(word);
         }
 
-        public static int SyllableCount(Word word)
-        {
-            // get a lowercase/trimmed version of the string
-            string formattedWord = FormatWord(word);
-
-            // the number of syllables in the word
-            int count = 0;
-
-            //TODO: finish syllablecount
-
-            // return the result
-            return count;
-        }
-
         public static float WordComplexity(Word word)
         {
-            return UniquenessFactor(word) * ScrabbleCount(word);
+            return UniquenessFactor(word) * ScrabbleScore(word);
         }
 
         public static float UniquenessFactor(Word word)
         {
             return (float)word.UniqueChars / (float)word.Length;
         }
+        #endregion Methods
     }
 }

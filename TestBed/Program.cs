@@ -26,12 +26,15 @@ namespace TestBed
                 else
                 {
                     Word testWord = new Word(testString);
+                    Console.WriteLine("(" + WordAnalyzer.FormatWord(testWord) + ")");
                     Separator();
                     Console.WriteLine("\tlength: \t\t" + testWord.Length);
                     Console.WriteLine("\tunique characters:\t" + testWord.UniqueChars);
+                    Console.WriteLine("\tscrabble score:\t\t" + WordAnalyzer.ScrabbleScore(testWord));
                     Separator();
                     Console.WriteLine("\tvowels:\t\t\t" + WordAnalyzer.VowelCount(testWord));
                     Console.WriteLine("\tconsonants:\t\t" + WordAnalyzer.ConsonantCount(testWord));
+                    Console.WriteLine("\tsyllables:\t\t" + WordAnalyzer.SyllableCount(testWord));
                     Separator();
                     Console.WriteLine("\tcomplexity:\t\t" + WordAnalyzer.WordComplexity(testWord));
                     Separator();
