@@ -22,9 +22,33 @@ namespace STAT312WordAnalyzer
         private static readonly Regex YVowelCheck = new Regex("(?<![" + VowelString + "])[y](?![" + VowelString + "])");
         
         private static readonly Regex AlphaCheck = new Regex("[A-Za-z]+");
+
+        private static readonly Regex CharRepeatFinder = new Regex("(\\w)(\\1+)");
+
+        private static readonly Regex SequenceRepeatFinder = new Regex("(\\w{2,})(\\1+)");
         #endregion Fields
 
         #region Methods
+        public static int SequenceRepeats(Word word)
+        {
+            int count = 0;
+            foreach (Match m in SequenceRepeatFinder.Matches(FormatWord(word)))
+            {
+                count += m.Groups[2].Length / m.Groups[1].Length;
+            }
+            return count >= 0 ? count : 0;
+        }
+
+        public static int SequentialCharRepeats(Word word)
+        {
+            int count = 0;
+            foreach(Match m in CharRepeatFinder.Matches(FormatWord(word)))
+            {
+                count += m.Groups[2].Length;
+            }
+            return count >= 0 ? count : 0;
+        }
+
         public static string FormatWord(Word word)
         {
             string result = "";

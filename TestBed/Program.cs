@@ -30,11 +30,15 @@ namespace TestBed
                     Separator();
                     Console.WriteLine("\tlength: \t\t" + testWord.Length);
                     Console.WriteLine("\tunique characters:\t" + testWord.UniqueChars);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("\tconsecutive repeats:\t" + WordAnalyzer.SequentialCharRepeats(testWord));
+                    Console.WriteLine("\tconsecutive sequences:\t" + WordAnalyzer.SequenceRepeats(testWord));
+                    Console.ResetColor();
                     Console.WriteLine("\tscrabble score:\t\t" + WordAnalyzer.ScrabbleScore(testWord));
                     Separator();
                     Console.WriteLine("\tvowels:\t\t\t" + WordAnalyzer.VowelCount(testWord));
                     Console.WriteLine("\tconsonants:\t\t" + WordAnalyzer.ConsonantCount(testWord));
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("\tsyllables:\t\t" + WordAnalyzer.SyllableCount(testWord));
                     Console.ResetColor();
                     Separator();
