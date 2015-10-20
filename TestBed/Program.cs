@@ -26,7 +26,7 @@ namespace TestBed
                 else
                 {
                     Word testWord = new Word(testString);
-                    Console.WriteLine("(" + WordAnalyzer.FormatWord(testWord) + ")");
+                    Console.WriteLine("\t\t(" + WordAnalyzer.FormatWord(testWord) + ")");
                     Separator();
                     Console.WriteLine("\tlength: \t\t" + testWord.Length);
                     Console.WriteLine("\tunique characters:\t" + testWord.UniqueChars);
@@ -34,7 +34,9 @@ namespace TestBed
                     Separator();
                     Console.WriteLine("\tvowels:\t\t\t" + WordAnalyzer.VowelCount(testWord));
                     Console.WriteLine("\tconsonants:\t\t" + WordAnalyzer.ConsonantCount(testWord));
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("\tsyllables:\t\t" + WordAnalyzer.SyllableCount(testWord));
+                    Console.ResetColor();
                     Separator();
                     Console.WriteLine("\tcomplexity:\t\t" + WordAnalyzer.WordComplexity(testWord));
                     Separator();

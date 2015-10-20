@@ -22,12 +22,6 @@ namespace STAT312WordAnalyzer
         private static readonly Regex YVowelCheck = new Regex("(?<![" + VowelString + "])[y](?![" + VowelString + "])");
         
         private static readonly Regex AlphaCheck = new Regex("[A-Za-z]+");
-
-        private static readonly Regex SyllableCheck = new Regex("(?<![" + VowelString + "])[" + VowelString + "]+");
-
-        private static readonly Regex SilentEndVowelCheck = new Regex("^.*[" + VowelString + "][ls]e$");
-
-        private static readonly Regex IOCheck = new Regex("io");
         #endregion Fields
 
         #region Methods
@@ -49,27 +43,11 @@ namespace STAT312WordAnalyzer
             }
             return count;
         }
-
+        
+        //TODO: see if we can make this work
         public static int SyllableCount(Word word)
         {
-            // get the formatted word
-            string formatted = FormatWord(word);
-
-            // check for syllables
-            int count = SyllableCheck.Matches(formatted).Count;
-
-            // check for 'y' syllables
-            count += YVowelCheck.Matches(formatted).Count;
-
-            // check for a "[VOWEL]le" ending
-            if (SilentEndVowelCheck.IsMatch(formatted))
-                count--;
-
-            // check for "io" pairs
-            if (IOCheck.IsMatch(formatted))
-                count++;
-
-            return count;
+            return 0;
         }
         
         public static int VowelCount(Word word)
