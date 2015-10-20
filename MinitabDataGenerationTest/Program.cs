@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,8 @@ namespace MinitabDataGenerationTest
 
             // make output
             Console.WriteLine("Generating output...");
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             writer.WriteLine("word\tcomplexity");
             while (!reader.EndOfStream)
             {
@@ -49,8 +52,10 @@ namespace MinitabDataGenerationTest
                 }
             }
             writer.Close();
+            sw.Stop();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Output successfully generated.");
+            Console.WriteLine("Output took: " + sw.Elapsed.ToString() + " to complete.");
             Console.ResetColor();
 
             // quit
