@@ -22,10 +22,31 @@ namespace STAT312WordAnalyzer
         // Matches a 'y' that is not surrounded by other 'non-y' vowels
         private static readonly Regex YVowelCheck = new Regex("(?<![" + VowelString + "])[y](?![" + VowelString + "])");
         
+        // matches a sequence of alphabetic characters
+        private static readonly Regex AlphaCheck = new Regex("[A-Za-z]+");
+
+        private static string FormatWord(Word word)
+        {
+            string result = "";
+            foreach (Match m in AlphaCheck.Matches(word.ToString().ToLower().Trim()))
+                result += m.Value;
+            return result;
+        }
+
+        public static int ScrabbleCount(Word word)
+        {
+            int count = 0;
+            foreach(char c in FormatWord(word))
+            {
+                count += LetterValues[c];
+            }
+            return count;
+        }
+        
         public static int VowelCount(Word word)
         {
             // simplify the format of the word
-            string formattedWord = word.ToString().ToLower().Trim();
+            string formattedWord = FormatWord(word);
 
             // the number of vowels that are in the word
             int count = 0;
@@ -53,12 +74,12 @@ namespace STAT312WordAnalyzer
         public static int SyllableCount(Word word)
         {
             // get a lowercase/trimmed version of the string
-            string formattedWord = word.ToString().ToLower().Trim();
+            string formattedWord = FormatWord(word);
 
             // the number of syllables in the word
             int count = 0;
 
-
+            //TODO: finish syllablecount
 
             // return the result
             return count;
@@ -66,7 +87,7 @@ namespace STAT312WordAnalyzer
 
         public static float WordComplexity(Word word)
         {
-            return UniquenessFactor(word) * word.Length;
+            return UniquenessFactor(word) * ScrabbleCount(word);
         }
 
         public static float UniquenessFactor(Word word)

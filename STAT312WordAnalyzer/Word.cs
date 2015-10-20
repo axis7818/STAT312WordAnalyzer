@@ -10,16 +10,10 @@ namespace STAT312WordAnalyzer
         private string _word;
 
         private HashSet<char> Chars = new HashSet<char>();
-
-        // matches a sequence of alphabetic characters
-        private static readonly Regex AlphaCheck = new Regex("[A-Za-z]+");
-
+        
         public Word(string word)
         {
-            // only use the alphabetical characters from the given word
-            _word = "";
-            foreach (Match m in AlphaCheck.Matches(word))
-                _word += m.Value;
+            _word = word;
 
             // add the characters to the Chars HashSet
             for(int i = 0; i < _word.Length; i++)
