@@ -38,7 +38,18 @@ namespace MinitabDataGenerationTest
             string resultFilePath = "./Results.txt";
             if (!File.Exists(resultFilePath))
                 File.Create(resultFilePath);
-            StreamWriter writer = new StreamWriter(resultFilePath);
+            StreamWriter writer;
+            try
+            {
+                writer = new StreamWriter(resultFilePath);
+            }
+            catch (IOException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There was an error creating the Results.txt file: " + e.Message);
+                Console.ResetColor();
+                goto END;
+            }
 
             // make output
             Console.WriteLine("Generating output...");
