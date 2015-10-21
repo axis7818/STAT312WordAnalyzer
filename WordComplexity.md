@@ -10,3 +10,13 @@ We need ideas for what factors affect the complexity of a word. If you have any 
 * different letters having different weights \(z worth more than e\)
 
 Once we have gathered all of these parameters, we can pretty simply come up with an algorithm to compute a measure of "Word Complexity".
+
+## Current Algorithm
+
+$$
+u = number of unique characters in the word
+l = length of the word
+S = the word's Scrabble score
+r = number of repeated single characters
+R = number of repeated sequences of characters
+$$
