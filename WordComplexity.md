@@ -15,10 +15,10 @@ Once we have gathered all of these parameters, we can pretty simply come up with
 
 C = complexity measure<br/>
 u = number of unique characters in the word<br/>
-l = length of the word<br/>
+L = length of the word<br/>
 S = the word's Scrabble score<br/>
 r = number of repeated single characters<br/>
 R = number of repeated sequences of characters
 
-C = [u(S + l - r)] / [l(R + 1)]
+C = [u(S + L - r)] / [L(R + 1)]
 
