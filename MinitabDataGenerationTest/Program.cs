@@ -19,6 +19,13 @@ namespace MinitabDataGenerationTest
             {
                 reader = new StreamReader(args[0]);
             }
+            catch (IndexOutOfRangeException)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("No file to read from. Please give the file as a command line argument.");
+                Console.ResetColor();
+                goto END;
+            }
             catch (FileNotFoundException)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
