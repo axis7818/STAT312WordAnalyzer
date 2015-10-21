@@ -77,6 +77,16 @@ namespace MinitabDataGenerationTest
             Console.WriteLine("Output successfully generated.");
             Console.WriteLine("Output took: " + sw.Elapsed.ToString() + " to analyze " + wordCount.ToString() + " words.");
             Console.ResetColor();
+            try
+            {
+                Process.Start(new ProcessStartInfo(".\\Results.txt"));
+            }
+            catch(Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There was an error starting Results.txt: " + e.Message);
+                Console.ResetColor();
+            }
 
             // quit
             END:
