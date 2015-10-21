@@ -20,7 +20,5 @@ S = the word's Scrabble score<br/>
 r = number of repeated single characters<br/>
 R = number of repeated sequences of characters
 
-      u(S + l - r)
-C = ------------------
-        l(R + 1)
+C = [u(S + l - r)] / [l(R + 1)]
 
