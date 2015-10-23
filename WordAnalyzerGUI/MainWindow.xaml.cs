@@ -12,6 +12,8 @@ namespace WordAnalyzerGUI
 {
     public partial class MainWindow : Window
     {
+        private WordAnalyzerSettings Settings;
+
         private static readonly Regex Tokenizer = new Regex("\\S+");
 
         private static readonly Regex Alphafier = new Regex("[A-Za-z]+");
@@ -19,13 +21,15 @@ namespace WordAnalyzerGUI
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private int SampleSize
-        {
-            get
+            try
             {
-                return 4;
+                Settings = WordAnalyzerSettings.ReadFile("WordAnalyzerSettings.xml");
+            }
+            catch (FileNotFoundException)
+            {
+                Settings = WordAnalyzerSettings.DefaultSettings;
+                WordAnalyzerSettings.WriteFile(Settings);
             }
         }
 
@@ -35,7 +39,7 @@ namespace WordAnalyzerGUI
             List<string> words = Tokenize(TB_SourceText.Text);
             try
             {
-                foreach(string word in GetSample(words, SampleSize))
+                foreach(string word in GetSample(words, Settings.SampleSize))
                 {
                     TB_RandomSample.Text += word + "\n";
                 }
@@ -92,6 +96,13 @@ namespace WordAnalyzerGUI
             }
 
             return result;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // save the settings on exit
+            if(Settings != null)
+                WordAnalyzerSettings.WriteFile(Settings);
         }
     }
 }
