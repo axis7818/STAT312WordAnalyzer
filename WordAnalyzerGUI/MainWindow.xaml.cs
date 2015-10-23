@@ -1,27 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.IO;
-using System.Collections.Specialized;
 
 namespace WordAnalyzerGUI
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private WordAnalyzerSettings Settings;
-
-        private static readonly Regex Tokenizer = new Regex("\\S+");
-
         private static readonly Regex Alphafier = new Regex("[A-Za-z]+");
-        
+        private static readonly Regex Numberfier = new Regex("[\\d]+");
+        private static readonly Regex Tokenizer = new Regex("\\S+");
+        private WordAnalyzerSettings _settings;
+
         public MainWindow()
         {
-            InitializeComponent();
-
             try
             {
                 Settings = WordAnalyzerSettings.ReadFile("WordAnalyzerSettings.xml");
@@ -31,33 +25,54 @@ namespace WordAnalyzerGUI
                 Settings = WordAnalyzerSettings.DefaultSettings;
                 WordAnalyzerSettings.WriteFile(Settings);
             }
+            InitializeComponent();
         }
 
-        private void BTN_GetSample_Click(object sender, RoutedEventArgs e)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int SampleSize
         {
-            TB_RandomSample.Text = "";
-            List<string> words = Tokenize(TB_SourceText.Text);
-            try
+            get
             {
-                foreach(string word in GetSample(words, Settings.SampleSize))
-                {
-                    TB_RandomSample.Text += word + "\n";
-                }
-            }    
-            catch(ArgumentException ex)
+                return Settings.SampleSize;
+            }
+            private set
             {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }   
+                Settings.SampleSize = value;
+                OnPropertyChanged("SampleSize");
+            }
         }
 
-        private void MI_Options_Click(object sender, RoutedEventArgs e)
+        public WordAnalyzerSettings Settings
         {
-            MessageBox.Show(this, "Not yet implemented!", "Not Implemented", MessageBoxButton.OK, MessageBoxImage.Error);
+            get
+            {
+                return _settings;
+            }
+            private set
+            {
+                _settings = value;
+                OnPropertyChanged("Settings");
+            }
         }
 
-        private void MI_OpenResultsFile_Click(object sender, RoutedEventArgs e)
+        private static List<string> GetSample(List<string> source, int size)
         {
-            MessageBox.Show(this, "Not yet implemented!", "Not Implemented", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (size > source.Count)
+                throw new ArgumentException("Sample size (" + size.ToString() + ") must be smaller than the source count.");
+
+            List<string> input = new List<string>(source);
+            List<string> result = new List<string>();
+            Random rand = new Random(DateTime.Now.Millisecond);
+
+            for (int i = 0; i < size; i++)
+            {
+                int index = rand.Next() % input.Count;
+                result.Add(input[index]);
+                input.RemoveAt(index);
+            }
+
+            return result;
         }
 
         private static List<string> Tokenize(string input)
@@ -68,41 +83,65 @@ namespace WordAnalyzerGUI
             {
                 string token = "";
 
-                foreach(Match m2 in Alphafier.Matches(m1.Value))
+                foreach (Match m2 in Alphafier.Matches(m1.Value))
                 {
-                    token += m2.Value;  
+                    token += m2.Value;
                 }
 
-                result.Add(token);
+                if(!string.IsNullOrWhiteSpace(token))
+                    result.Add(token);
             }
 
             return result;
         }
 
-        private static List<string> GetSample(List<string> source, int size)
+        private void BTN_GetSample_Click(object sender, RoutedEventArgs e)
         {
-            if (size > source.Count)
-                throw new ArgumentException("Sample size must be larger than the source count.");
-
-            List<string> input = new List<string>(source);
-            List<string> result = new List<string>();
-            Random rand = new Random(DateTime.Now.Millisecond);
-
-            for(int i = 0; i < size; i++)
+            TB_RandomSample.Text = "";
+            List<string> words = Tokenize(TB_SourceText.Text);
+            try
             {
-                int index = rand.Next() % input.Count;
-                result.Add(input[index]);
-                input.RemoveAt(index);
+                foreach (string word in GetSample(words, SampleSize))
+                {
+                    TB_RandomSample.Text += word + "\n";
+                }
             }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
-            return result;
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                if (propertyName.Equals("Settings"))
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("SampleSize"));
+                }
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // save the settings on exit
-            if(Settings != null)
+            if (Settings != null)
                 WordAnalyzerSettings.WriteFile(Settings);
+        }
+
+        private void TB_SampleSize_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string number = "";
+            foreach(Match m in Numberfier.Matches(TB_SampleSize.Text))
+            {
+                number += m.Value;
+            }
+            if (!string.IsNullOrWhiteSpace(number))
+                SampleSize = int.Parse(number);
+            else
+                SampleSize = 0;
         }
     }
 }
