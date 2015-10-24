@@ -5,13 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordAnalyzerGUI"
         mc:Ignorable="d"
-        Title="Word Analyzer" Height="500" Width="700" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        Title="Word Analyzer" MinHeight="500" MinWidth="700" Height="500" Width="700" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <!-- Settings/Options --> 
+        <Grid Grid.Row="0" Margin="5,5,5,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Source: "/>
+                <ComboBox Width="150" Name="CB_Source" IsEditable="True" VerticalAlignment="Center" 
+                          ItemsSource="{Binding Path=Sources, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
+                <TextBlock Text="Sample Size: "/>
+                <TextBox Width="100" Name="TB_SampleSize" Text="{Binding Path=SampleSize, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" 
+                         LostFocus="TB_SampleSize_LostFocus" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1">
+                <CheckBox Name="CB_UseDate" Content="Use Date" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <DatePicker Name="DP_Date" IsEnabled="{Binding Path=IsChecked, ElementName=CB_UseDate}"/>
+            </StackPanel>
+        </Grid>
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -28,7 +57,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock HorizontalAlignment="Center" Text="Put Text Here"/>
+                <TextBlock HorizontalAlignment="Center" Text="Source Text"/>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="1">
                     <TextBox AcceptsTab="True" AcceptsReturn="True" Name="TB_SourceText"/>
                 </ScrollViewer>
@@ -45,22 +74,18 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" HorizontalScrollBarVisibility="Auto">
                     <TextBox AcceptsReturn="True" IsReadOnly="True" Name="TB_RandomSample"/>
                 </ScrollViewer>
-                <Button Content="Get Sample" Grid.Row="2" Margin="0,5,0,0" Name="BTN_GetSample" Click="BTN_GetSample_Click"/>
-            </Grid>
-
-            <!-- The bottom section -->
-            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
-                <StackPanel Orientation="Horizontal" Margin="5,0,5,5" HorizontalAlignment="Center">
-                    <TextBlock Text="Sample Size: "/>
-                    <TextBox Width="100" Name="TB_SampleSize" Text="{Binding Path=SampleSize, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" 
-                             LostFocus="TB_SampleSize_LostFocus"/>
+                <StackPanel Grid.Row="2" Margin="0">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="0,5,0,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Content="Get Sample" Name="BTN_GetSample" Click="BTN_GetSample_Click"/>
+                    <Button Content="Save Sample" Name="BTN_SaveSample" Click="BTN_SaveSample_Click"/>
+                    <Button Content="Open Data File" Name="BTN_ShowData" Click="BTN_ShowData_Click"/>
+                    <Button Content="Export Data to Desktop" Name="BTN_ExportToDesktop" Click="BTN_ExportToDesktop_Click"/>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="1" Grid.Column="0">
-                <StackPanel Orientation="Horizontal" Margin="5,0,0,5">
-                </StackPanel>
-            </Grid>
-
         </Grid>
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ namespace WordAnalyzerGUI
         private static readonly Regex Numberfier = new Regex("[\\d]+");
         private static readonly Regex Tokenizer = new Regex("\\S+");
         private WordAnalyzerSettings _settings;
+        private List<string> _sources = new List<string>();
 
         public MainWindow()
         {
@@ -56,6 +57,19 @@ namespace WordAnalyzerGUI
             }
         }
 
+        public List<string> Sources
+        {
+            get
+            {
+                return _sources;
+            }
+            set
+            {
+                _sources = value;
+                OnPropertyChanged("Sources");
+            }
+        }
+
         private static List<string> GetSample(List<string> source, int size)
         {
             if (size > source.Count)
@@ -88,11 +102,27 @@ namespace WordAnalyzerGUI
                     token += m2.Value;
                 }
 
-                if(!string.IsNullOrWhiteSpace(token))
+                if (!string.IsNullOrWhiteSpace(token))
                     result.Add(token);
             }
 
             return result;
+        }
+
+        private bool AddSource(string source)
+        {
+            if (!Sources.Contains(source) && !string.IsNullOrWhiteSpace(source))
+            {
+                Sources.Add(source);
+                OnPropertyChanged("Source");
+                return true;
+            }
+            return false;
+        }
+
+        private void BTN_ExportToDesktop_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not yet implemented.");
         }
 
         private void BTN_GetSample_Click(object sender, RoutedEventArgs e)
@@ -112,6 +142,16 @@ namespace WordAnalyzerGUI
             }
         }
 
+        private void BTN_SaveSample_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not Yet implemented");
+        }
+
+        private void BTN_ShowData_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not Yet implemented");
+        }
+
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -124,17 +164,10 @@ namespace WordAnalyzerGUI
             }
         }
 
-        private void Window_Closing(object sender, CancelEventArgs e)
-        {
-            // save the settings on exit
-            if (Settings != null)
-                WordAnalyzerSettings.WriteFile(Settings);
-        }
-
         private void TB_SampleSize_LostFocus(object sender, RoutedEventArgs e)
         {
             string number = "";
-            foreach(Match m in Numberfier.Matches(TB_SampleSize.Text))
+            foreach (Match m in Numberfier.Matches(TB_SampleSize.Text))
             {
                 number += m.Value;
             }
@@ -142,6 +175,13 @@ namespace WordAnalyzerGUI
                 SampleSize = int.Parse(number);
             else
                 SampleSize = 0;
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            // save the settings on exit
+            if (Settings != null)
+                WordAnalyzerSettings.WriteFile(Settings);
         }
     }
 }
