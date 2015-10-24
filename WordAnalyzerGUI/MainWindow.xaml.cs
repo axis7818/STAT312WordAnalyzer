@@ -124,7 +124,7 @@ namespace WordAnalyzerGUI
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             // save the settings on exit
             if (Settings != null)
