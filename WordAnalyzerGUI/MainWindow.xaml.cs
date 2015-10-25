@@ -4,16 +4,23 @@ using System.ComponentModel;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
+using STAT312WordAnalyzer;
 
 namespace WordAnalyzerGUI
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private static readonly Regex Alphafier = new Regex("[A-Za-z]+");
+
         private static readonly Regex Numberfier = new Regex("[\\d]+");
+
         private static readonly Regex Tokenizer = new Regex("\\S+");
+
         private WordAnalyzerSettings _settings;
+
         private List<string> _sources = new List<string>();
+
+        private List<Word> Words = new List<Word>();
 
         public MainWindow()
         {
@@ -118,6 +125,11 @@ namespace WordAnalyzerGUI
                 return true;
             }
             return false;
+        }
+
+        private void BTN_ClearSessionData_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not yet implemented.");
         }
 
         private void BTN_ExportToDesktop_Click(object sender, RoutedEventArgs e)
