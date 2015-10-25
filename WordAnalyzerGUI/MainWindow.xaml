@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordAnalyzerGUI"
         mc:Ignorable="d"
-        Title="Word Analyzer" MinHeight="500" MinWidth="700" Height="500" Width="700" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        Title="Word Analyzer" MinHeight="500" MinWidth="700" Height="800" Width="700" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -64,7 +64,7 @@
             </Grid>
 
             <!-- Sample Text Area -->
-            <Grid Grid.Column="1" Margin="0,5,5,5" MinWidth="200">
+            <Grid Grid.Column="1" Margin="0,5,5,5" Width="200">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
@@ -80,11 +80,10 @@
                             <Setter Property="Margin" Value="0,5,0,0"/>
                         </Style>
                     </StackPanel.Resources>
-                    <Button Content="Get Sample" Name="BTN_GetSample" Click="BTN_GetSample_Click"/>
-                    <Button Content="Save Sample" Name="BTN_SaveSample" Click="BTN_SaveSample_Click"/>
-                    <Button Content="View Data File" Name="BTN_ShowData" Click="BTN_ShowData_Click"/>
-                    <Button Content="Export Data to Desktop" Name="BTN_ExportToDesktop" Click="BTN_ExportToDesktop_Click"/>
-                    <Button Content="Clear Session Data" Name="BTN_ClearSessionData" Click="BTN_ClearSessionData_Click"/>
+                    <Button Content="Get Sample" Name="BTN_GetSample" Click="BTN_GetSample_Click" ToolTip="Gets a random sample of words from the source text."/>
+                    <Button Content="Save Sample" Name="BTN_SaveSample" Click="BTN_SaveSample_Click" ToolTip="Saves the current Sample of words."/>
+                    <Button Content="Export Data to Desktop" Name="BTN_ExportToDesktop" Click="BTN_ExportToDesktop_Click" ToolTip="Sends the data from this session to the desktop as a .txt file"/>
+                    <Button Content="Clear Session Data" Name="BTN_ClearSessionData" Click="BTN_ClearSessionData_Click" ToolTip="Clears all saved data from this session."/>
                 </StackPanel>
             </Grid>
         </Grid>

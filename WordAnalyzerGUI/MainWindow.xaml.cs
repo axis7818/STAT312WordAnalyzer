@@ -6,6 +6,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using STAT312WordAnalyzer;
 
+//TODO: add a side panel with all of the saved words for the session
+
 namespace WordAnalyzerGUI
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
@@ -129,7 +131,11 @@ namespace WordAnalyzerGUI
 
         private void BTN_ClearSessionData_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not yet implemented.");
+            MessageBoxResult check = MessageBox.Show("Are you sure you want to delete this session's data?", "Delete Data?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (check == MessageBoxResult.Yes)
+            {
+                Words.Clear();
+            }
         }
 
         private void BTN_ExportToDesktop_Click(object sender, RoutedEventArgs e)
@@ -156,12 +162,43 @@ namespace WordAnalyzerGUI
 
         private void BTN_SaveSample_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not Yet implemented");
+            // get the sample of words
+            List<string> sample = Tokenize(TB_RandomSample.Text);
+            if (sample.Count <= 0)
+            {
+                MessageBox.Show("No Data To Save", "No Data", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            // get source and add the source to the Sources list if it doesn't exist
+            string source = CB_Source.Text;
+            if (!Sources.Contains(source))
+                Sources.Add(source);
+
+            // get the date (if it exists)
+            DateTime? date = null;
+            if (DP_Date.IsEnabled)
+                date = DP_Date.DisplayDate;
+
+            // save the data
+            foreach(string word in sample)
+            {
+                Word w = new Word(word, source, date);
+                Words.Add(w);
+            }
+
+            MessageBox.Show("Sample data was saved!", "Sample Saved", MessageBoxButton.OK, MessageBoxImage.None);
         }
 
-        private void BTN_ShowData_Click(object sender, RoutedEventArgs e)
+        private static string ToTextList(List<Word> words)
         {
-            MessageBox.Show("Not Yet implemented");
+            string result = "";
+            foreach(Word w in words)
+            {
+                result += w.ToString() + "\n";
+            }
+            result.TrimEnd('\n');
+            return result;
         }
 
         private void OnPropertyChanged(string propertyName)

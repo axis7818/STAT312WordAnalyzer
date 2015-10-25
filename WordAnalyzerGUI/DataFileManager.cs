@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using STAT312WordAnalyzer;
 
+//TODO: make the sample file save between sessions
+
 namespace WordAnalyzerGUI
 {
     public static class DataFileManager
@@ -17,6 +19,11 @@ namespace WordAnalyzerGUI
         private static readonly string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), fileName);
 
         private static readonly XmlSerializer serializer = new XmlSerializer(typeof(List<Word>));
+
+        public static void CopyFileToDesktop()
+        {
+            //TODO: implement
+        }
 
         public static void SaveFile(List<Word> words)
         {
