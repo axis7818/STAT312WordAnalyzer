@@ -40,6 +40,23 @@ namespace WordAnalyzerGUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public string SessionWords
+        {
+            get
+            {
+                string result = "";
+                foreach(Word w in Words)
+                {
+                    result += w.ToString() + "\n";
+                }
+                return result;
+            }
+            set
+            {
+
+            }
+        }
+
         public int SampleSize
         {
             get
@@ -135,6 +152,10 @@ namespace WordAnalyzerGUI
             if (check == MessageBoxResult.Yes)
             {
                 Words.Clear();
+                TB_SourceText.Text = TB_RandomSample.Text = "";
+                CB_Source.Text = "";
+                DP_Date.SelectedDate = null;
+                OnPropertyChanged("SessionWords");
             }
         }
 
@@ -184,25 +205,35 @@ namespace WordAnalyzerGUI
             List<string> sample = Tokenize(TB_RandomSample.Text);
             if (sample.Count <= 0)
             {
-                MessageBox.Show("No Data To Save", "No Data", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No Data To Save", "No Data", MessageBoxButton.OK);
                 return;
             }
 
             // get source and add the source to the Sources list if it doesn't exist
             string source = CB_Source.Text;
+            if (string.IsNullOrWhiteSpace(source))
+            {
+                MessageBox.Show("Please enter a source.", "No Source", MessageBoxButton.OK);
+                return;
+            }
             if (!Sources.Contains(source))
                 Sources.Add(source);
 
             // get the date (if it exists)
             DateTime? date = null;
             if (DP_Date.IsEnabled)
+            {
                 date = DP_Date.DisplayDate;
+            }
+                
+
 
             // save the data
             foreach(string word in sample)
             {
                 Word w = new Word(word, source, date);
                 Words.Add(w);
+                OnPropertyChanged("SessionWords");
             }
 
             MessageBox.Show("Sample data was saved!", "Sample Saved", MessageBoxButton.OK, MessageBoxImage.None);

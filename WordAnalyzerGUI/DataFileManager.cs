@@ -17,7 +17,25 @@ namespace WordAnalyzerGUI
         private static readonly string localFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), fileName);
 
         private static readonly string desktopFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
-        
+
+        private static string MinitabFileLine(Word word)
+        {
+            return word.ToString() + "\t" + word.Source + "\t" + word.SourceDateString + "\t" + WordAnalyzer.WordComplexity(word);
+        }
+
+        private static Word MinitabFileLine(string line)
+        {
+            try
+            {
+                string[] tokens = line.Split('\t');
+                return new Word(tokens[0], tokens[1], DateTime.Parse(tokens[2]));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public static void CopyFileToDesktop(bool force = false)
         {
             if (!File.Exists(localFilePath))
@@ -43,7 +61,11 @@ namespace WordAnalyzerGUI
 
             using (StreamWriter writer = new StreamWriter(localFilePath))
             {
-                //TODO: write the file in a minitab readable format
+                writer.WriteLine("Word\tSource\tDate\tComplexity");
+                foreach(Word w in words)
+                {
+                    writer.WriteLine(MinitabFileLine(w));
+                }
             }
         }
 
@@ -52,11 +74,17 @@ namespace WordAnalyzerGUI
             if (!File.Exists(localFilePath))
                 throw new FileNotFoundException(localFilePath + " was not found.");
 
+            List<Word> result = new List<Word>();
             using (StreamReader reader = new StreamReader(localFilePath))
             {
-                //TODO: read the file from a minitab readable format
-                return null;
+                while (!reader.EndOfStream)
+                {
+                    Word next = MinitabFileLine(reader.ReadLine());
+                    if (next != null)
+                        result.Add(next);
+                }
             }
+            return result;
         }
     }
 }

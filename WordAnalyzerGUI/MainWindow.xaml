@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordAnalyzerGUI"
         mc:Ignorable="d"
-        Title="Word Analyzer" MinHeight="500" MinWidth="700" Height="800" Width="700" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        Title="Word Analyzer" MinHeight="500" MinWidth="800" Height="800" Width="1200" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -18,6 +18,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Rectangle Fill="#009999" Grid.RowSpan="2" Opacity="0.8"/>
+
         <!-- Settings/Options --> 
         <Grid Grid.Row="0" Margin="5,5,5,5">
             <Grid.ColumnDefinitions>
@@ -26,7 +28,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Source: "/>
+                <TextBlock Text="Source Name: "/>
                 <ComboBox Width="150" Name="CB_Source" IsEditable="True" VerticalAlignment="Center" 
                           ItemsSource="{Binding Path=Sources, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
             </StackPanel>
@@ -35,14 +37,16 @@
                 <TextBox Width="100" Name="TB_SampleSize" Text="{Binding Path=SampleSize, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" 
                          LostFocus="TB_SampleSize_LostFocus" VerticalAlignment="Center"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1">
-                <CheckBox Name="CB_UseDate" Content="Use Date" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <DatePicker Name="DP_Date" IsEnabled="{Binding Path=IsChecked, ElementName=CB_UseDate}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+                <CheckBox Name="CB_UseDate" Content="Use Date" VerticalAlignment="Center" Margin="0,0,10,0" IsChecked="True"/>
+                <DatePicker Name="DP_Date" IsEnabled="{Binding Path=IsChecked, ElementName=CB_UseDate}" Width="150"/>
             </StackPanel>
         </Grid>
         
+        <!-- Main Body Area -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
@@ -51,20 +55,32 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
+            <!-- Session Data -->
+            <Grid Margin="5,5,0,5" Width="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Center" Text="Session Data"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" HorizontalScrollBarVisibility="Auto">
+                    <TextBox AcceptsReturn="True" Name="TB_SessionSample" IsReadOnly="True" Background="#ffffff" Opacity="0.7" Text="{Binding Path=SessionWords}"/>
+                </ScrollViewer>
+            </Grid>
+            
             <!-- Source Text Area -->
-            <Grid Grid.Row="0" Grid.Column="0" Margin="5">
+            <Grid Grid.Row="0" Grid.Column="1" Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock HorizontalAlignment="Center" Text="Source Text"/>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="1">
-                    <TextBox AcceptsTab="True" AcceptsReturn="True" Name="TB_SourceText"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
+                    <TextBox AcceptsTab="True" AcceptsReturn="True" Name="TB_SourceText" TextWrapping="Wrap"/>
                 </ScrollViewer>
             </Grid>
 
             <!-- Sample Text Area -->
-            <Grid Grid.Column="1" Margin="0,5,5,5" Width="200">
+            <Grid Grid.Column="2" Margin="0,5,5,5" Width="200">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
@@ -72,7 +88,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock HorizontalAlignment="Center" Text="Random Sample"/>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" HorizontalScrollBarVisibility="Auto">
-                    <TextBox AcceptsReturn="True" IsReadOnly="True" Name="TB_RandomSample"/>
+                    <TextBox AcceptsReturn="True" IsReadOnly="True" Name="TB_RandomSample" Background="#ffffff" Opacity="0.7"/>
                 </ScrollViewer>
                 <StackPanel Grid.Row="2" Margin="0">
                     <StackPanel.Resources>

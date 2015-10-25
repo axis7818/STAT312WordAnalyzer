@@ -31,6 +31,20 @@ namespace STAT312WordAnalyzer
             }
         }
 
+        [XmlIgnore()]
+        public string SourceDateString
+        {
+            get
+            {
+                if (SourceDate != null)
+                {
+                    return SourceDate.ToString().Split(' ')[0];
+                }
+                else
+                    return "";
+            }
+        }
+
         [XmlAttribute()]
         public DateTime? SourceDate
         {
