@@ -98,7 +98,7 @@ namespace WordAnalyzerGUI
             return result;
         }
 
-        private static List<string> Tokenize(string input)
+        public static List<string> Tokenize(string input)
         {
             List<string> result = new List<string>();
 
@@ -140,7 +140,25 @@ namespace WordAnalyzerGUI
 
         private void BTN_ExportToDesktop_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not yet implemented.");
+            // create the local file
+            DataFileManager.SaveFile(Words);
+
+            try
+            {
+                DataFileManager.CopyFileToDesktop();
+            }
+            catch (FileOverwriteException)
+            {
+                MessageBoxResult check = MessageBox.Show("The file [" + DataFileManager.fileName + "] already exists on the desktop. \nDo you want to overwrite it?", "File Overwrite", MessageBoxButton.YesNo, MessageBoxImage.None);
+                if(check == MessageBoxResult.Yes)
+                {
+                    DataFileManager.CopyFileToDesktop(true);
+                }
+                else
+                {
+                    MessageBox.Show("The file was not sent to the desktop.", "File Not Overwritten", MessageBoxButton.OK, MessageBoxImage.None);
+                }
+            }
         }
 
         private void BTN_GetSample_Click(object sender, RoutedEventArgs e)
