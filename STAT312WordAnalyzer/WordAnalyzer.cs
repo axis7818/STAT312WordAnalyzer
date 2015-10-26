@@ -13,11 +13,25 @@ namespace STAT312WordAnalyzer
 
         private static readonly Regex CharRepeatFinder = new Regex("(\\w)(\\1+)");
 
-        private static readonly Dictionary<char, int> LetterValues = new Dictionary<char, int>()
+        public static readonly Dictionary<char, int> LetterValues = new Dictionary<char, int>()
         {
             {'a', 1 }, {'b', 3 }, {'c', 3 }, {'d', 2 }, {'e', 1 }, {'f', 4 }, {'g', 2 }, {'h', 4 }, {'i', 1 },
             { 'j', 1 }, {'k', 5 }, {'l', 1 }, {'m', 3 }, {'n', 1 }, {'o', 1 }, {'p', 3 }, {'q', 10 }, { 'r', 1 },
             { 's', 1 }, {'t', 1 }, {'u', 1 }, {'v', 4 }, {'w', 4 }, {'x', 8 }, {'y', 4 }, {'z', 10 }
+        };
+
+        public static readonly Dictionary<char, float> LetterFrequency = new Dictionary<char, float>()
+        {
+            {'a', 0.08167f }, {'b', 0.01492f }, {'c', 0.02782f }, {'d', 0.04253f }, {'e', 0.12702f }, {'f', 0.02228f }, {'g', 0.02015f }, {'h', 0.06094f }, {'i', 0.06966f },
+            {'j', 0.00153f }, {'k', 0.00772f }, {'l', 0.04025f }, {'m', 0.02406f }, {'n', 0.06749f }, {'o', 0.07507f }, {'p', 0.01929f }, {'q', 0.00095f }, {'r', 0.05987f },
+            {'s', 0.06327f }, {'t', 0.09056f }, {'u', 0.02758f }, {'v', 0.00978f }, {'w', 0.02361f }, {'x', 0.00150f }, {'y', 0.01974f }, {'z', 0.00074f }
+        };
+
+        public static readonly Dictionary<char, float> FirstLetterFrequency = new Dictionary<char, float>()
+        {
+            {'a', 0.11602f }, {'b', 0.04702f }, {'c', 0.03511f }, {'d', 0.02670f }, {'e', 0.02007f }, {'f', 0.03779f }, {'g', 0.01950f }, {'h', 0.07232f }, {'i', 0.06286f },
+            {'j', 0.00597f }, {'k', 0.00590f }, {'l', 0.02705f }, {'m', 0.04383f }, {'n', 0.02365f }, {'o', 0.06264f }, {'p', 0.02545f }, {'q', 0.00173f }, {'r', 0.01653f },
+            {'s', 0.07755f }, {'t', 0.16671f }, {'u', 0.01487f }, {'v', 0.00649f }, {'w', 0.06753f }, {'x', 0.00017f }, {'y', 0.01620f }, {'z', 0.00034f }
         };
 
         private static readonly Regex SequenceRepeatFinder = new Regex("(\\w{2,}?)(\\1+)");
