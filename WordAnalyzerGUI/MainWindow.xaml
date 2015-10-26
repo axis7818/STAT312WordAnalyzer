@@ -18,7 +18,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Rectangle Fill="#009999" Grid.RowSpan="2" Opacity="0.8"/>
+        <Rectangle Fill="#009999" Grid.Row="0"/>
+        <Rectangle Fill="#009999" Grid.Row="1" Opacity="0.6"/>
 
         <!-- Settings/Options --> 
         <Grid Grid.Row="0" Margin="5,5,5,5">
