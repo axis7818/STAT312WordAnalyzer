@@ -6,8 +6,6 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using STAT312WordAnalyzer;
 
-//TODO: add a side panel with all of the saved words for the session
-
 namespace WordAnalyzerGUI
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
@@ -26,6 +24,7 @@ namespace WordAnalyzerGUI
 
         public MainWindow()
         {
+            // get the settings
             try
             {
                 Settings = WordAnalyzerSettings.ReadFile("WordAnalyzerSettings.xml");
@@ -35,6 +34,12 @@ namespace WordAnalyzerGUI
                 Settings = WordAnalyzerSettings.DefaultSettings;
                 WordAnalyzerSettings.WriteFile(Settings);
             }
+
+            // load an existing Session file
+            if (File.Exists(DataFileManager.localFilePath))
+                Words = DataFileManager.ReadFile();
+
+            // initialize the GUI
             InitializeComponent();
         }
 
@@ -51,10 +56,7 @@ namespace WordAnalyzerGUI
                 }
                 return result;
             }
-            set
-            {
-
-            }
+            set { }
         }
 
         public int SampleSize
@@ -162,7 +164,7 @@ namespace WordAnalyzerGUI
         private void BTN_ExportToDesktop_Click(object sender, RoutedEventArgs e)
         {
             // create the local file
-            DataFileManager.SaveFile(Words);
+            DataFileManager.WriteFile(Words);
 
             try
             {
@@ -280,6 +282,18 @@ namespace WordAnalyzerGUI
             // save the settings on exit
             if (Settings != null)
                 WordAnalyzerSettings.WriteFile(Settings);
+
+            // save the Current Session data
+            try
+            {
+                DataFileManager.WriteFile(Words);
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBoxResult check = MessageBox.Show("Session data could not be saved. Exit anyways?", "Could not save session data.", MessageBoxButton.YesNo, MessageBoxImage.None);
+                if (check == MessageBoxResult.No)
+                    e.Cancel = true;
+            }
         }
     }
 }

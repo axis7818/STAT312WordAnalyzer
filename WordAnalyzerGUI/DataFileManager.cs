@@ -6,17 +6,17 @@ using System.Reflection;
 using System.Xml.Serialization;
 using STAT312WordAnalyzer;
 
-//TODO: make the sample file save between sessions
-
 namespace WordAnalyzerGUI
 {
     public static class DataFileManager
     {
         public const string fileName = "WordResultData.txt";
 
-        private static readonly string localFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), fileName);
+        private const string minitabFileHeader = "Word\tSource\tDate\tComplexity";
 
-        private static readonly string desktopFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+        public static readonly string localFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), fileName);
+
+        public static readonly string desktopFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
         private static string MinitabFileLine(Word word)
         {
@@ -54,14 +54,14 @@ namespace WordAnalyzerGUI
             }
         }
 
-        public static void SaveFile(List<Word> words)
+        public static void WriteFile(List<Word> words)
         {
             if (words == null || words.Any(w => w == null))
                 throw new ArgumentNullException("words or a Word in words is equal to null");
 
             using (StreamWriter writer = new StreamWriter(localFilePath))
             {
-                writer.WriteLine("Word\tSource\tDate\tComplexity");
+                writer.WriteLine(minitabFileHeader);
                 foreach(Word w in words)
                 {
                     writer.WriteLine(MinitabFileLine(w));
