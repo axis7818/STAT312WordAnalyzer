@@ -131,7 +131,23 @@ namespace STAT312WordAnalyzer
 
         public static float WordComplexity(Word word)
         {
-            return UniquenessFactor(word) * (ScrabbleScore(word) + (3.0f * (float)word.Length) - SequentialCharRepeats(word)) / (SequenceRepeats(word) + 1.0f);
+            float letterScore = UniquenessFactor(word) * (word.Length + LetterFrequencyScore(word));
+            float repeatScore = (SequenceRepeats(word) + SequentialCharRepeats(word)) / word.Length;
+            return letterScore - repeatScore;
+        }
+
+        public static float LetterFrequencyScore(Word word)
+        {
+            float result = 0;
+
+            foreach(char c in word)
+            {
+                result += 1 - LetterFrequency[c];
+            }
+
+            result -= FirstLetterFrequency[word.ToString()[0]];
+
+            return result;
         }
 
         #endregion Methods
