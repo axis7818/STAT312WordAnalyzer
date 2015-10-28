@@ -8,7 +8,7 @@ namespace WordAnalyzerGUI
 {
     public class FileOverwriteException : Exception
     {
-        public FileOverwriteException() { }
+        public FileOverwriteException() : base() { }
 
         public FileOverwriteException(string message) : base(message) { }
 

@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="DataFileManager.cs" />
     <Compile Include="FileOverwriteException.cs" />
+    <Compile Include="SessionFileReadException.cs" />
     <Compile Include="WordAnalyzerSettings.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -5,6 +5,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using STAT312WordAnalyzer;
+using System.Threading.Tasks;
 
 namespace WordAnalyzerGUI
 {
@@ -18,7 +19,7 @@ namespace WordAnalyzerGUI
 
         private WordAnalyzerSettings _settings;
 
-        private List<string> _sources = new List<string>();
+        //private List<string> _sources = new List<string>();
 
         private List<Word> Words = new List<Word>();
 
@@ -34,10 +35,6 @@ namespace WordAnalyzerGUI
                 Settings = WordAnalyzerSettings.DefaultSettings;
                 WordAnalyzerSettings.WriteFile(Settings);
             }
-
-            // load an existing Session file
-            if (File.Exists(DataFileManager.localFilePath))
-                Words = DataFileManager.ReadFile();
 
             // initialize the GUI
             InitializeComponent();
@@ -89,12 +86,11 @@ namespace WordAnalyzerGUI
         {
             get
             {
-                return _sources;
+                return Settings.Sources;
             }
             set
             {
-                _sources = value;
-                OnPropertyChanged("Sources");
+                
             }
         }
 
@@ -115,6 +111,22 @@ namespace WordAnalyzerGUI
             }
 
             return result;
+        }
+
+        private void EnableLoadingFilm(string message)
+        {
+            TB_LoadingMessage.Text = message;
+            G_LoadingFilm.Visibility = Visibility.Visible;
+        }
+        
+        private void DisableLoadingFilm()
+        {
+            G_LoadingFilm.Visibility = Visibility.Collapsed;
+        }
+
+        private void SetSampleLoadingFilmVisibility(bool visible)
+        {
+            G_SampleLoadingFilm.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public static List<string> Tokenize(string input)
@@ -142,7 +154,7 @@ namespace WordAnalyzerGUI
             if (!Sources.Contains(source) && !string.IsNullOrWhiteSpace(source))
             {
                 Sources.Add(source);
-                OnPropertyChanged("Source");
+                OnPropertyChanged("Sources");
                 return true;
             }
             return false;
@@ -155,7 +167,7 @@ namespace WordAnalyzerGUI
             {
                 Words.Clear();
                 TB_SourceText.Text = TB_RandomSample.Text = "";
-                CB_Source.Text = "";
+                TB_Source.Text = "";
                 DP_Date.SelectedDate = null;
                 OnPropertyChanged("SessionWords");
             }
@@ -172,7 +184,7 @@ namespace WordAnalyzerGUI
             }
             catch (FileOverwriteException)
             {
-                MessageBoxResult check = MessageBox.Show("The file [" + DataFileManager.fileName + "] already exists on the desktop. \nDo you want to overwrite it?", "File Overwrite", MessageBoxButton.YesNo, MessageBoxImage.None);
+                MessageBoxResult check = MessageBox.Show("The file [" + DataFileManager.wordsFileName + "] already exists on the desktop. \nDo you want to overwrite it?", "File Overwrite", MessageBoxButton.YesNo, MessageBoxImage.None);
                 if(check == MessageBoxResult.Yes)
                 {
                     DataFileManager.CopyFileToDesktop(true);
@@ -180,42 +192,50 @@ namespace WordAnalyzerGUI
                 else
                 {
                     MessageBox.Show("The file was not sent to the desktop.", "File Not Overwritten", MessageBoxButton.OK, MessageBoxImage.None);
+                    return;
                 }
             }
+
+            MessageBox.Show("The file was sent to the desktop.", "File Sent", MessageBoxButton.OK);
         }
 
-        private void BTN_GetSample_Click(object sender, RoutedEventArgs e)
+        private async void BTN_GetSample_Click(object sender, RoutedEventArgs e)
         {
-            TB_RandomSample.Text = "";
+            SetSampleLoadingFilmVisibility(true);
+            string result = "";
+            
             List<string> words = Tokenize(TB_SourceText.Text);
-            try
+
+            await Task.Run(() =>
             {
-                foreach (string word in GetSample(words, SampleSize))
+                try
                 {
-                    TB_RandomSample.Text += word + "\n";
+                    foreach (string word in GetSample(words, SampleSize))
+                    {
+                        result += word + "\n";
+                    }
                 }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
+
+            TB_RandomSample.Text = result;
+            SetSampleLoadingFilmVisibility(false);
         }
 
-        private void BTN_SaveSample_Click(object sender, RoutedEventArgs e)
+        private async void BTN_SaveSample_Click(object sender, RoutedEventArgs e)
         {
-            // get the sample of words
-            List<string> sample = Tokenize(TB_RandomSample.Text);
-            if (sample.Count <= 0)
-            {
-                MessageBox.Show("No Data To Save", "No Data", MessageBoxButton.OK);
-                return;
-            }
+            EnableLoadingFilm("Processing . . .");
+            string sampleText = TB_RandomSample.Text;
 
             // get source and add the source to the Sources list if it doesn't exist
-            string source = CB_Source.Text;
+            string source = TB_Source.Text;
             if (string.IsNullOrWhiteSpace(source))
             {
                 MessageBox.Show("Please enter a source.", "No Source", MessageBoxButton.OK);
+                DisableLoadingFilm();
                 return;
             }
             if (!Sources.Contains(source))
@@ -227,18 +247,30 @@ namespace WordAnalyzerGUI
             {
                 date = DP_Date.DisplayDate;
             }
-                
 
-
-            // save the data
-            foreach(string word in sample)
+            await Task.Run(() => 
             {
-                Word w = new Word(word, source, date);
-                Words.Add(w);
-                OnPropertyChanged("SessionWords");
-            }
+                // get the sample of words
+                List<string> sample = Tokenize(sampleText);
+                if (sample.Count <= 0)
+                {
+                    MessageBox.Show("No Data To Save", "No Data", MessageBoxButton.OK);
+                    DisableLoadingFilm();
+                    return;
+                }
 
-            MessageBox.Show("Sample data was saved!", "Sample Saved", MessageBoxButton.OK, MessageBoxImage.None);
+                // save the data
+                foreach(string word in sample)
+                {
+                    Word w = new Word(word, source, date);
+                    Words.Add(w);
+                    
+                }
+                OnPropertyChanged("SessionWords");
+                MessageBox.Show("Sample data was saved!", "Sample Saved", MessageBoxButton.OK, MessageBoxImage.None);
+            });
+
+            DisableLoadingFilm();
         }
 
         private static string ToTextList(List<Word> words)
@@ -294,6 +326,40 @@ namespace WordAnalyzerGUI
                 if (check == MessageBoxResult.No)
                     e.Cancel = true;
             }
+
+            // save the current source text
+            if(!string.IsNullOrWhiteSpace(TB_SourceText.Text))
+                DataFileManager.WriteSourceTextFile(TB_SourceText.Text);
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            EnableLoadingFilm("Loading Previous Session Data . . .");
+            string sourceText = "";
+
+            await Task.Run(() =>
+            {
+                // load an existing Session file
+                if (File.Exists(DataFileManager.localWordsFilePath))
+                {
+                    try
+                    {
+                        Words = DataFileManager.ReadFile();
+                    }
+                    catch (SessionFileReadException)
+                    {
+                        MessageBox.Show("There was an error reading the last session's file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                if (File.Exists(DataFileManager.localSourceTextFilePath))
+                {
+                    sourceText = DataFileManager.ReadSourceTextFile();
+                }
+                OnPropertyChanged("SessionWords");
+            });
+
+            TB_SourceText.Text = sourceText;
+            DisableLoadingFilm();
         }
     }
 }

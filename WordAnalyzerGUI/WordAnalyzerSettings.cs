@@ -17,6 +17,9 @@ namespace WordAnalyzerGUI
 
         [XmlAttribute()]
         public int SampleSize;
+
+        [XmlAttribute()]
+        public List<string> Sources;
         
         public WordAnalyzerSettings() { }
 
@@ -24,6 +27,7 @@ namespace WordAnalyzerGUI
         {
             Name = name;
             SampleSize = sampleSize;
+            Sources = new List<string>();
         }
 
         [XmlIgnore()]
