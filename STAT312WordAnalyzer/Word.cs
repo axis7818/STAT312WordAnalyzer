@@ -117,5 +117,19 @@ namespace STAT312WordAnalyzer
             foreach (char c in _word)
                 yield return c;
         }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is Word)
+            {
+                return _word.Equals((obj as Word)._word);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return _word.GetHashCode();
+        }
     }
 }

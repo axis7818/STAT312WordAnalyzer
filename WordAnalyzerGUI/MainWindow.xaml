@@ -31,7 +31,8 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Source Name: "/>
-                <TextBox Width="150" Name="TB_Source" VerticalAlignment="Center" LostFocus="TB_Source_LostFocus"/>
+                <TextBox Width="150" Name="TB_Source" VerticalAlignment="Center" Text="{Binding Path=SourceText, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                         LostFocus="TB_Source_LostFocus"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
                 <TextBlock Text="Sample Size: "/>

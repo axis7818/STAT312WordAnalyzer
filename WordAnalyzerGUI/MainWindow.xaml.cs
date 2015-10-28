@@ -60,11 +60,10 @@ namespace WordAnalyzerGUI
         {
             get
             {
-                return TB_Source.Text;
+                return Settings.Source;
             }
-            set
+            private set
             {
-                TB_Source.Text = value;
                 Settings.Source = value;
                 OnPropertyChanged("SourceText");
             }
@@ -160,6 +159,7 @@ namespace WordAnalyzerGUI
                 TB_SourceText.Text = TB_RandomSample.Text = "";
                 SourceText = "";
                 DP_Date.SelectedDate = null;
+                CB_UseDate.IsChecked = false;
                 DataFileManager.DeleteWordFile();
                 DataFileManager.DeleteLocalSourceTextFile();
                 OnPropertyChanged("SessionWords");
@@ -169,7 +169,7 @@ namespace WordAnalyzerGUI
         private void BTN_ExportToDesktop_Click(object sender, RoutedEventArgs e)
         {
             // create the local file
-            DataFileManager.WriteWordFile(Words);
+            DataFileManager.WriteWordFile(Words/*.Distinct().ToList()*/);   // uncomment to filter for unique words
 
             try
             {
@@ -360,7 +360,8 @@ namespace WordAnalyzerGUI
 
         private void TB_Source_LostFocus(object sender, RoutedEventArgs e)
         {
-            Settings.Source = SourceText;   
+            string source = TB_Source.Text;
+            SourceText = source;   
         }
     }
 }
