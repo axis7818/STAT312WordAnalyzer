@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using STAT312WordAnalyzer;
@@ -19,8 +20,6 @@ namespace WordAnalyzerGUI
 
         private WordAnalyzerSettings _settings;
 
-        //private List<string> _sources = new List<string>();
-
         private List<Word> Words = new List<Word>();
 
         public MainWindow()
@@ -34,6 +33,7 @@ namespace WordAnalyzerGUI
             {
                 Settings = WordAnalyzerSettings.DefaultSettings;
                 WordAnalyzerSettings.WriteFile(Settings);
+                SourceText = Settings.Source;
             }
 
             // initialize the GUI
@@ -54,6 +54,20 @@ namespace WordAnalyzerGUI
                 return result;
             }
             set { }
+        }
+
+        public string SourceText
+        {
+            get
+            {
+                return TB_Source.Text;
+            }
+            set
+            {
+                TB_Source.Text = value;
+                Settings.Source = value;
+                OnPropertyChanged("SourceText");
+            }
         }
 
         public int SampleSize
@@ -79,18 +93,6 @@ namespace WordAnalyzerGUI
             {
                 _settings = value;
                 OnPropertyChanged("Settings");
-            }
-        }
-
-        public List<string> Sources
-        {
-            get
-            {
-                return Settings.Sources;
-            }
-            set
-            {
-                
             }
         }
 
@@ -149,17 +151,6 @@ namespace WordAnalyzerGUI
             return result;
         }
 
-        private bool AddSource(string source)
-        {
-            if (!Sources.Contains(source) && !string.IsNullOrWhiteSpace(source))
-            {
-                Sources.Add(source);
-                OnPropertyChanged("Sources");
-                return true;
-            }
-            return false;
-        }
-
         private void BTN_ClearSessionData_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult check = MessageBox.Show("Are you sure you want to delete this session's data?", "Delete Data?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -167,8 +158,10 @@ namespace WordAnalyzerGUI
             {
                 Words.Clear();
                 TB_SourceText.Text = TB_RandomSample.Text = "";
-                TB_Source.Text = "";
+                SourceText = "";
                 DP_Date.SelectedDate = null;
+                DataFileManager.DeleteWordFile();
+                DataFileManager.DeleteLocalSourceTextFile();
                 OnPropertyChanged("SessionWords");
             }
         }
@@ -176,7 +169,7 @@ namespace WordAnalyzerGUI
         private void BTN_ExportToDesktop_Click(object sender, RoutedEventArgs e)
         {
             // create the local file
-            DataFileManager.WriteFile(Words);
+            DataFileManager.WriteWordFile(Words);
 
             try
             {
@@ -231,15 +224,13 @@ namespace WordAnalyzerGUI
             string sampleText = TB_RandomSample.Text;
 
             // get source and add the source to the Sources list if it doesn't exist
-            string source = TB_Source.Text;
+            string source = SourceText;
             if (string.IsNullOrWhiteSpace(source))
             {
                 MessageBox.Show("Please enter a source.", "No Source", MessageBoxButton.OK);
                 DisableLoadingFilm();
                 return;
             }
-            if (!Sources.Contains(source))
-                Sources.Add(source);
 
             // get the date (if it exists)
             DateTime? date = null;
@@ -266,6 +257,10 @@ namespace WordAnalyzerGUI
                     Words.Add(w);
                     
                 }
+
+                // sort the data
+                Words = Words.OrderBy(w => w.ToString()).ToList();
+
                 OnPropertyChanged("SessionWords");
                 MessageBox.Show("Sample data was saved!", "Sample Saved", MessageBoxButton.OK, MessageBoxImage.None);
             });
@@ -291,6 +286,7 @@ namespace WordAnalyzerGUI
                 if (propertyName.Equals("Settings"))
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("SampleSize"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("SourceText"));
                 }
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
@@ -318,7 +314,7 @@ namespace WordAnalyzerGUI
             // save the Current Session data
             try
             {
-                DataFileManager.WriteFile(Words);
+                DataFileManager.WriteWordFile(Words);
             }
             catch (ArgumentNullException)
             {
@@ -344,7 +340,7 @@ namespace WordAnalyzerGUI
                 {
                     try
                     {
-                        Words = DataFileManager.ReadFile();
+                        Words = DataFileManager.ReadWordFile();
                     }
                     catch (SessionFileReadException)
                     {
@@ -360,6 +356,11 @@ namespace WordAnalyzerGUI
 
             TB_SourceText.Text = sourceText;
             DisableLoadingFilm();
+        }
+
+        private void TB_Source_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Settings.Source = SourceText;   
         }
     }
 }

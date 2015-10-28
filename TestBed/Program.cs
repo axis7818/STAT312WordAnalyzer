@@ -37,6 +37,7 @@ namespace TestBed
                     Console.WriteLine("\tscrabble score:\t\t" + WordAnalyzer.ScrabbleScore(testWord));
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\tfrequency score:\t" + WordAnalyzer.LetterFrequencyScore(testWord));
+                    Console.WriteLine("\taverage letter freq:\t" + WordAnalyzer.AverageLetterFrequency(testWord));
                     Console.ResetColor();
                     Separator();
                     Console.WriteLine("\tvowels:\t\t\t" + WordAnalyzer.VowelCount(testWord));

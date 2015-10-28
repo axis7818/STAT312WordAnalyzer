@@ -133,7 +133,16 @@ namespace STAT312WordAnalyzer
         {
             float letterScore = UniquenessFactor(word) * (word.Length + LetterFrequencyScore(word));
             float repeatScore = (SequenceRepeats(word) + SequentialCharRepeats(word)) / word.Length;
-            return letterScore - repeatScore;
+            return 10 * AverageLetterFrequency(word) * (letterScore - repeatScore)  ;
+        }
+
+        public static float AverageLetterFrequency(Word word)
+        {
+            float result = 0;
+            foreach (char c in word)
+                result += LetterFrequency[c];
+            result /= word.Length;
+            return result;
         }
 
         public static float LetterFrequencyScore(Word word)

@@ -19,15 +19,15 @@ namespace WordAnalyzerGUI
         public int SampleSize;
 
         [XmlAttribute()]
-        public List<string> Sources;
+        public string Source;
         
         public WordAnalyzerSettings() { }
 
-        public WordAnalyzerSettings(string name, int sampleSize)
+        public WordAnalyzerSettings(string name, int sampleSize, string source)
         {
             Name = name;
             SampleSize = sampleSize;
-            Sources = new List<string>();
+            Source = source;
         }
 
         [XmlIgnore()]
@@ -35,7 +35,7 @@ namespace WordAnalyzerGUI
         {
             get
             {
-                return new WordAnalyzerSettings("WordAnalyzerSettings", 4);
+                return new WordAnalyzerSettings("WordAnalyzerSettings", 4, "");
             }
         }
 

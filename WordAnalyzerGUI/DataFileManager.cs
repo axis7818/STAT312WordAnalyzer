@@ -14,7 +14,7 @@ namespace WordAnalyzerGUI
 
         public const string sourceTextFileName = "SourceText.txt";
 
-        private const string minitabFileHeader = "Word\tSource\tDate\tComplexity";
+        private const string minitabFileHeader = "Word\tSource\tDate\tComplexity\tLogComplexity\tLength\tUniquenessFactor\tUniqueChars\tVowels\tConsonants";
 
         public static readonly string localWordsFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), wordsFileName);
 
@@ -24,7 +24,10 @@ namespace WordAnalyzerGUI
 
         private static string MinitabFileLine(Word word)
         {
-            return word.ToString() + "\t" + word.Source + "\t" + word.SourceDateString + "\t" + WordAnalyzer.WordComplexity(word);
+            float complexity = WordAnalyzer.WordComplexity(word);
+            int vowelCount = WordAnalyzer.VowelCount(word);
+            return word.ToString() + "\t" + word.Source + "\t" + word.SourceDateString + "\t" + complexity + "\t" + Math.Log10(complexity) + "\t" + word.Length + 
+                "\t" + WordAnalyzer.UniquenessFactor(word) + "\t" + word.UniqueChars + "\t" + vowelCount + "\t" + (word.Length - vowelCount);
         }
 
         private static Word MinitabFileLine(string line)
@@ -58,7 +61,13 @@ namespace WordAnalyzerGUI
             }
         }
 
-        public static void WriteFile(List<Word> words)
+        public static void DeleteWordFile()
+        {
+            if (File.Exists(localWordsFilePath))
+                File.Delete(localWordsFilePath);
+        }
+
+        public static void WriteWordFile(List<Word> words)
         {
             if (words == null || words.Any(w => w == null))
                 throw new ArgumentNullException("words or a Word in words is equal to null");
@@ -73,7 +82,7 @@ namespace WordAnalyzerGUI
             }
         }
         
-        public static List<Word> ReadFile()
+        public static List<Word> ReadWordFile()
         {
             if (!File.Exists(localWordsFilePath))
                 throw new FileNotFoundException(localWordsFilePath + " was not found.");
@@ -82,6 +91,7 @@ namespace WordAnalyzerGUI
 
             using (StreamReader reader = new StreamReader(localWordsFilePath))
             {
+                reader.ReadLine();
                 while (!reader.EndOfStream)
                 {
                     try
@@ -119,6 +129,12 @@ namespace WordAnalyzerGUI
                 result = reader.ReadToEnd();
             }
             return result;
+        }
+
+        public static void DeleteLocalSourceTextFile()
+        {
+            if (File.Exists(localSourceTextFilePath))
+                File.Delete(localSourceTextFilePath);
         }
     }
 }
