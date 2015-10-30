@@ -20,8 +20,6 @@ namespace WordAnalyzerGUI
 
         public static readonly string localSourceTextFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), sourceTextFileName);
 
-        public static readonly string desktopWordsFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), wordsFileName);
-
         private static string MinitabFileLine(Word word)
         {
             float complexity = WordAnalyzer.WordComplexity(word);
@@ -43,11 +41,12 @@ namespace WordAnalyzerGUI
             return new Word(tokens[0], tokens[1], dateTime);
         }
 
-        public static void CopyFileToDesktop(bool force = false)
+        public static void CopyFileToDesktop(string fileName, bool force = false)
         {
             if (!File.Exists(localWordsFilePath))
                 throw new FileNotFoundException("could not find the local file");
 
+            string desktopWordsFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName + ".txt");
             if (force)
             {
                 File.Copy(localWordsFilePath, desktopWordsFilePath, true);

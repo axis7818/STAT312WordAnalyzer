@@ -171,22 +171,41 @@ namespace WordAnalyzerGUI
             // create the local file
             DataFileManager.WriteWordFile(Words/*.Distinct().ToList()*/);   // uncomment to filter for unique words
 
+            StringGetter stringGetter = new StringGetter("Enter a name for the file.");
+            stringGetter.Owner = this;
+            stringGetter.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            stringGetter.ShowDialog();
+            string name = stringGetter.Result;
+            Regex txtChecker = new Regex("^.*\\.txt$");
+            if (stringGetter.GotString && (string.IsNullOrWhiteSpace(name) || txtChecker.IsMatch(name)))
+            {
+                MessageBox.Show("Invalid name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (stringGetter.GotString == false)
+                return;
+
             try
             {
-                DataFileManager.CopyFileToDesktop();
+                DataFileManager.CopyFileToDesktop(name);
             }
             catch (FileOverwriteException)
             {
-                MessageBoxResult check = MessageBox.Show("The file [" + DataFileManager.wordsFileName + "] already exists on the desktop. \nDo you want to overwrite it?", "File Overwrite", MessageBoxButton.YesNo, MessageBoxImage.None);
+                MessageBoxResult check = MessageBox.Show("The file [" + name + ".txt] already exists on the desktop. \nDo you want to overwrite it?", "File Overwrite", MessageBoxButton.YesNo, MessageBoxImage.None);
                 if(check == MessageBoxResult.Yes)
                 {
-                    DataFileManager.CopyFileToDesktop(true);
+                    DataFileManager.CopyFileToDesktop(name, true);
                 }
                 else
                 {
                     MessageBox.Show("The file was not sent to the desktop.", "File Not Overwritten", MessageBoxButton.OK, MessageBoxImage.None);
                     return;
                 }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Local file was not found.");
+                return;
             }
 
             MessageBox.Show("The file was sent to the desktop.", "File Sent", MessageBoxButton.OK);
@@ -262,7 +281,7 @@ namespace WordAnalyzerGUI
                 Words = Words.OrderBy(w => w.ToString()).ToList();
 
                 OnPropertyChanged("SessionWords");
-                MessageBox.Show("Sample data was saved!", "Sample Saved", MessageBoxButton.OK, MessageBoxImage.None);
+                //MessageBox.Show("Sample data was saved!", "Sample Saved", MessageBoxButton.OK, MessageBoxImage.None);
             });
 
             DisableLoadingFilm();
