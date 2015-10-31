@@ -14,7 +14,7 @@ namespace WordAnalyzerGUI
 
         public const string sourceTextFileName = "SourceText.txt";
 
-        private const string minitabFileHeader = "Word\tSource\tDate\tComplexity\tLogComplexity\tLength\tUniquenessFactor\tUniqueChars\tVowels\tConsonants";
+        private const string minitabFileHeader = "Word\tSource\tDate\tComplexity\tLogComplexity\tLength\tUniquenessFactor\tUniqueChars\tVowels\tVowelProportion\tConsonants\tConsonantProportion\tFirstLetter";
 
         public static readonly string localWordsFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), wordsFileName);
 
@@ -22,10 +22,20 @@ namespace WordAnalyzerGUI
 
         private static string MinitabFileLine(Word word)
         {
+            int length = word.Length;
             float complexity = WordAnalyzer.WordComplexity(word);
             int vowelCount = WordAnalyzer.VowelCount(word);
-            return word.ToString() + "\t" + word.Source + "\t" + word.SourceDateString + "\t" + complexity + "\t" + Math.Log10(complexity) + "\t" + word.Length + 
-                "\t" + WordAnalyzer.UniquenessFactor(word) + "\t" + word.UniqueChars + "\t" + vowelCount + "\t" + (word.Length - vowelCount);
+            int consonantCount = length - vowelCount;
+            char? firstChar;
+            try
+            {
+                firstChar = word.ToString()[0];
+            }
+            catch (IndexOutOfRangeException) { firstChar = null; }
+
+            return word.ToString() + "\t" + word.Source + "\t" + word.SourceDateString + "\t" + complexity + "\t" + Math.Log10(complexity) + "\t" + length + 
+                "\t" + WordAnalyzer.UniquenessFactor(word) + "\t" + word.UniqueChars + "\t" + vowelCount + "\t" + (vowelCount / (float)length) + "\t" + consonantCount + 
+                "\t" + (consonantCount / (float)length) + "\t" + firstChar ?? "";
         }
 
         private static Word MinitabFileLine(string line)

@@ -95,6 +95,7 @@
                 <Grid Grid.Row="1" Name="G_SampleLoadingFilm" Visibility="Collapsed">
                     <Rectangle Fill="White" Opacity="0.8"/>
                     <TextBlock Text="Getting Sample . . ."/>
+                    <Rectangle Fill="#009999" Height="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="0" Name="R_SampleLoadingBar"/>
                 </Grid>
                 <StackPanel Grid.Row="2" Margin="0">
                     <StackPanel.Resources>

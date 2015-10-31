@@ -94,8 +94,8 @@ namespace WordAnalyzerGUI
                 OnPropertyChanged("Settings");
             }
         }
-
-        private static List<string> GetSample(List<string> source, int size)
+        
+        private List<string> GetSample(List<string> source, int size)
         {
             if (size > source.Count)
                 throw new ArgumentException("Sample size (" + size.ToString() + ") must be smaller than the source count.");
@@ -110,7 +110,6 @@ namespace WordAnalyzerGUI
                 result.Add(input[index]);
                 input.RemoveAt(index);
             }
-
             return result;
         }
 
@@ -215,8 +214,13 @@ namespace WordAnalyzerGUI
         {
             SetSampleLoadingFilmVisibility(true);
             string result = "";
+
+            List<string> words = null;
+            Dispatcher.Invoke(() =>
+            {
+                words = Tokenize(TB_SourceText.Text);
+            });
             
-            List<string> words = Tokenize(TB_SourceText.Text);
 
             await Task.Run(() =>
             {
