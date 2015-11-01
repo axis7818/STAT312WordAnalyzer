@@ -29,7 +29,7 @@ We want to analyze the complexity of words based on their source, proportion of 
 
 #### 1 November 2015
 
-Installer Download Link http://www.mediafire.com/download/dktlj354ru3274x/Stat312WordAnalyzer_setup.msi
+[Installer Download Link](http://www.mediafire.com/download/dktlj354ru3274x/Stat312WordAnalyzer_setup.msi)
 
 Hi guys, I have gotten the software to a point where it can be used to start to collect Data. Just download and run the installer and there will be a shortcut on the dekstop. The software only works on Windows. Make sure to provide a date for your source in the software, and uncheck the 'Use Date' box if you cannot find a date. It would be good if everyone could download that and start testing the software. If you have any questions, or find a problem with the software PLEASE LET ME KNOW!
 
