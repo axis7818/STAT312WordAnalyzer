@@ -26,6 +26,30 @@ We want to analyze the complexity of words based on their source, proportion of 
 ||Dec 7	|Final Presentation	|
 
 ## Updates
+
+#### 1 November 2015
+
+Installer Download Link
+
+Hi guys, I have gotten the software to a point where it can be used to start to collect Data. Just download and run the installer and there will be a shortcut on the dekstop. The software only works on Windows. Make sure to provide a date for your source in the software, and uncheck the 'Use Date' box if you cannot find a date. It would be good if everyone could download that and start testing the software. If you have any questions, or find a problem with the software PLEASE LET ME KNOW!
+
+Last Wednesday, we also decided that each of us would gather data from an individual source, and it will be up to you individually to determine how to collect your data, just make sure that you are getting a valid random sample, and document your procedure for collecting data. I think a good target to shoot for would be about 1000 words from your source. 
+
+|Name	|Source to Collect from	|
+|-------|-----------------------|
+|Cameron|Wikipedia		|
+|Khoa	|Scholarly Journals	|
+|Matt	|Books/Novels		|
+|David	|Reddit			|
+|Brad	|Social Media (pick one)|
+
+Khoa has set up a meeting with Professor Smith on Friday 6 Nov 2015 from 1:30-2:30 to talk about Covariates and Regression. If you can make it to that, please do! I will also be meeting with her to talk about some details on collecting data. Once that is done, we can start the first data collection for the pilot study.
+
+Thanks everyone!<br/>
+\- Cameron Taylor
+
+
+
 #### 14 October 2015
 Hi guys, sorry about any confusion that may have happened with the 5 people, but Professor Smith was pretty awesome and is letting us work in a team of 5. She had also already let us pursue this project despite being an observational study. Because of this, I really want to make sure that everyone does their best and we do produce a project that is worth of the work of 5 people.
 
