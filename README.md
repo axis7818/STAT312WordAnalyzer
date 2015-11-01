@@ -43,7 +43,7 @@ Last Wednesday, we also decided that each of us would gather data from an indivi
 |David	|Reddit			|
 |Brad	|Social Media (pick one)|
 
-Khoa has set up a meeting with Professor Smith on Friday 6 Nov 2015 from 1:30-2:30 to talk about Covariates and Regression. If you can make it to that, please do! I will also be meeting with her to talk about some details on collecting data. Once that is done, we can start the first data collection for the pilot study.
+Khoa has set up a meeting with Professor Smith on Friday 6 Nov 2015 from 1:30-2:30 in her office to talk about Covariates and Regression. If you can make it to that, please do! I will also be meeting with her to talk about some details on collecting data. Once that is done, we can start the first data collection for the pilot study.
 
 Thanks everyone!<br/>
 \- Cameron Taylor
