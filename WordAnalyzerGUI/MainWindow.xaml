@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordAnalyzerGUI"
         mc:Ignorable="d"
-        Title="Word Analyzer" MinHeight="500" MinWidth="800" Height="800" Width="1200" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}" Loaded="Window_Loaded" Icon="icon.ico">
+        Title="Word Analyzer" MinHeight="200" MinWidth="400" Height="300" Width="500" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}" Loaded="Window_Loaded" Icon="icon.ico">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
