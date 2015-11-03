@@ -18,8 +18,8 @@ We want to analyze the complexity of words based on their source, proportion of 
 |:----------:|-------|-----------------------|
 |![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Oct 14	|Project Proposal	|
 |![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Oct 19	|Complexity Analysis Completed|
-||Nov 2	|Data Collection Program Completed|
-||Nov 2 |Met with Professor Smith to talk about Regression and Covariates|
+|![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Nov 2	|Data Collection Program Completed|
+|![Needs doing](http://www.corpsnedmanuals.us/images/ned-icon-red-exclamation-point.png)|Nov 2 |Met with Professor Smith to talk about Regression and Covariates|
 ||Nov 9	|Project Update (Pilot Study and Power Analysis)|
 ||Nov 16	|Data for Final Project Collected in a Minitab File|
 ||Nov 30	|Presentation Completed and Practiced at least Once|
