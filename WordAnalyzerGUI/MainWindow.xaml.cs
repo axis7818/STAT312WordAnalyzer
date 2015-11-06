@@ -308,6 +308,7 @@ namespace WordAnalyzerGUI
                 //MessageBox.Show("Sample data was saved!", "Sample Saved", MessageBoxButton.OK, MessageBoxImage.None);
             });
 
+            TB_RandomSample.Text = "";
             DisableLoadingFilm();
         }
 
