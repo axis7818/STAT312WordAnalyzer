@@ -16,7 +16,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinitabDataGenerationTest",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordAnalyzerGUI", "WordAnalyzerGUI\WordAnalyzerGUI.csproj", "{CD55DFA3-E34C-4753-A3C5-9B0DE48D7D4E}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{640AA2B6-D11D-4662-B211-63CCF74D96FE}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Stat312WordAnalyzerSetup", "Setup\Setup.vdproj", "{640AA2B6-D11D-4662-B211-63CCF74D96FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFilesToMinitabFile", "TestFilesToMinitabFile\TextFilesToMinitabFile.csproj", "{D80A4A8F-79B6-4B2A-BE1C-5D7374333867}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{CD55DFA3-E34C-4753-A3C5-9B0DE48D7D4E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{640AA2B6-D11D-4662-B211-63CCF74D96FE}.Debug|Any CPU.ActiveCfg = Debug
 		{640AA2B6-D11D-4662-B211-63CCF74D96FE}.Release|Any CPU.ActiveCfg = Release
+		{D80A4A8F-79B6-4B2A-BE1C-5D7374333867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D80A4A8F-79B6-4B2A-BE1C-5D7374333867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D80A4A8F-79B6-4B2A-BE1C-5D7374333867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D80A4A8F-79B6-4B2A-BE1C-5D7374333867}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
