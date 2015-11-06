@@ -18,11 +18,19 @@ namespace TextFilesToMinitabFile
         private static readonly string resultFilePath = Path.Combine(Assembly.GetEntryAssembly().Location, resultFileName);
         private static readonly string textFilesDirectory = Path.Combine(Assembly.GetEntryAssembly().Location, textFileFolderName);
         private static readonly Regex textFileChecker = new Regex("^.*\\.txt$");
-        
+        private static int SampleSize = 10;
+
         static void Main(string[] args)
         {
+            /* Introduction Message */
+            Console.WriteLine("This program will process text files in the directory: " + textFilesDirectory);
+            Console.WriteLine("Place all .txt files to be processed in that directory and run this program.");
+            Console.WriteLine();
+
+            Console.Write("Enter the sample size to collect from each file: ");
+
             /* Start the program */
-            Console.WriteLine("Going through files...");
+            Console.WriteLine("Processing files...");
 
             /* Make sure the input directory exists */
             if (!Directory.Exists(textFilesDirectory))
