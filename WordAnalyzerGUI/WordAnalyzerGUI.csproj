@@ -56,9 +56,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataFileManager.cs" />
-    <Compile Include="FileOverwriteException.cs" />
-    <Compile Include="SessionFileReadException.cs" />
     <Compile Include="StringGetter.xaml.cs">
       <DependentUpon>StringGetter.xaml</DependentUpon>
     </Compile>

@@ -44,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFileManager.cs" />
+    <Compile Include="FileOverwriteException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionFileReadException.cs" />
     <Compile Include="Word.cs" />
     <Compile Include="WordAnalyzer.cs" />
   </ItemGroup>
