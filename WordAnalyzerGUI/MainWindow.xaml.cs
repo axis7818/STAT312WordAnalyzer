@@ -94,8 +94,25 @@ namespace WordAnalyzerGUI
                 OnPropertyChanged("Settings");
             }
         }
-        
-        private List<string> GetSample(List<string> source, int size)
+
+        private List<string> GetSample(List<string> source, int size, bool useProportion)
+        {
+            if (size < 0)
+                size = 0;
+
+            if (useProportion)
+            {
+                if (size > 100)
+                    size = 100;
+                float proportion = size / 100.0f;
+                float sizeFloat = source.Count * proportion;
+                size = (int)sizeFloat;    
+            }
+
+            return GetSampleWithSize(source, size);
+        }
+
+        private List<string> GetSampleWithSize(List<string> source, int size)
         {
             if (size > source.Count)
                 throw new ArgumentException("Sample size (" + size.ToString() + ") must be smaller than the source count.");
@@ -216,9 +233,12 @@ namespace WordAnalyzerGUI
             string result = "";
 
             List<string> words = null;
+            bool useProportion = false;
             Dispatcher.Invoke(() =>
             {
                 words = Tokenize(TB_SourceText.Text);
+                if (CB_Proportion.IsChecked == true)
+                    useProportion = true;
             });
             
 
@@ -226,7 +246,7 @@ namespace WordAnalyzerGUI
             {
                 try
                 {
-                    foreach (string word in GetSample(words, SampleSize))
+                    foreach (string word in GetSample(words, SampleSize, useProportion))
                     {
                         result += word + "\n";
                     }
@@ -317,15 +337,7 @@ namespace WordAnalyzerGUI
 
         private void TB_SampleSize_LostFocus(object sender, RoutedEventArgs e)
         {
-            string number = "";
-            foreach (Match m in Numberfier.Matches(TB_SampleSize.Text))
-            {
-                number += m.Value;
-            }
-            if (!string.IsNullOrWhiteSpace(number))
-                SampleSize = int.Parse(number);
-            else
-                SampleSize = 0;
+            VerifySampleInput();
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -385,6 +397,47 @@ namespace WordAnalyzerGUI
         {
             string source = TB_Source.Text;
             SourceText = source;   
+        }
+
+        private void CB_Proportion_Changed(object sender, RoutedEventArgs e)
+        {
+            VerifySampleInput();
+        }
+
+        private void VerifySampleInput()
+        {
+            if (CB_Proportion.IsChecked == true)
+            {
+                try
+                {
+                    SampleSize = int.Parse(TB_SampleSize.Text);
+                    if (SampleSize < 0)
+                        SampleSize = 0;
+                    if (SampleSize > 100)
+                        SampleSize = 100;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(this, "Invalid proportion. Must be a number from 0-100", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    SampleSize = 0;
+                }
+            }
+            else
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(TB_SampleSize.Text))
+                        TB_SampleSize.Text = "0";
+                    SampleSize = int.Parse(TB_SampleSize.Text);
+                    if (SampleSize < 0)
+                        SampleSize = 0;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(this, "Invalid sample size", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    SampleSize = 0;
+                }
+            }
         }
     }
 }
