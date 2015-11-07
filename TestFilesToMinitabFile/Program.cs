@@ -1,12 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Diagnostics;
 using System.Reflection;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Linq;
 using STAT312WordAnalyzer;
 
 namespace TextFilesToMinitabFile
@@ -20,6 +17,7 @@ namespace TextFilesToMinitabFile
         private static readonly Regex textFileChecker = new Regex("^.*\\.txt$");
         private static int SampleSize = 0;
         private static int ProcessedFiles = 0;
+        private static string Source = null;
 
         static void Main(string[] args)
         {
@@ -32,6 +30,10 @@ namespace TextFilesToMinitabFile
             Console.WriteLine("--------------------------------------------------------------------------------------------");
             Console.WriteLine();
 
+            /* Get the source from the user */
+            Console.Write("Enter the source that the files were pulled from: ");
+            Source = Console.ReadLine();
+
             /* Get the sample size from the user */
             Console.Write("Enter the sample size to collect from each file: ");
             string userInput = Console.ReadLine();
@@ -40,7 +42,7 @@ namespace TextFilesToMinitabFile
                 WriteWithColor("Invalid Sample Size. Ending Program...", ConsoleColor.Red);
                 return;
             }
-            Console.WriteLine("The sample size: " + SampleSize + " will be used.\n");
+            Console.WriteLine("The sample size [" + SampleSize + "] will be used to get words from [" + Source + "].\n");
 
             /* Start the program */
             Console.WriteLine("Processing files...\n");
@@ -53,6 +55,9 @@ namespace TextFilesToMinitabFile
                     "Start the program again with files in that directory.");
                 return;
             }
+
+            /* the sample words */
+            List<Word> sampleWords = new List<Word>();
 
             /* iterate through the files in the directory */
             foreach (string fileName in Directory.EnumerateFiles(textFilesDirectory))
@@ -71,9 +76,24 @@ namespace TextFilesToMinitabFile
                         Console.WriteLine("Failed to convert: " + date);
                         Console.Write("Enter another value: ");
                         date = Console.ReadLine();
+                        Console.WriteLine();
                     }
-                    
 
+                    /* read the contents of the file */
+                    List<string> sourceWords;
+                    using (StreamReader reader = new StreamReader(path))
+                    {
+                        sourceWords = Sampler.Tokenize(reader.ReadToEnd());
+                    }
+
+                    /* Get a sample of the words */
+                    foreach(string word in Sampler.GetSample(sourceWords, SampleSize, false))
+                    {
+                        sampleWords.Add(new Word(word, Source, dateTime));
+                    }
+
+                    /* increment the # of processed files */
+                    ProcessedFiles++;
                 }
                 else
                 {
@@ -81,10 +101,16 @@ namespace TextFilesToMinitabFile
                 }
             }
 
+            /* Write the results file */
+            sampleWords = sampleWords.OrderBy(w => w.ToString()).ToList();
+            DataFileManager.WriteMinitabFile(resultFilePath, sampleWords);
+            
             /* Summary */
-            Console.WriteLine(ProcessedFiles + " files were processed.");
+            WriteWithColor(ProcessedFiles + " files were processed.", ConsoleColor.Green);
+            WriteWithColor(sampleWords.Count + " words were grabbed.", ConsoleColor.Green);
+            Console.WriteLine();
             Console.WriteLine("The resulting file: " + resultFilePath);
-        }
+        } 
 
         private static void WriteWithColor(string message, ConsoleColor color)
         {

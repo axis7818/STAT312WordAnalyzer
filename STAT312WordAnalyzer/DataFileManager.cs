@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using STAT312WordAnalyzer;
 
-namespace WordAnalyzerGUI
+namespace STAT312WordAnalyzer
 {
     public static class DataFileManager
     {
@@ -18,6 +17,21 @@ namespace WordAnalyzerGUI
         public static readonly string localWordsFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), wordsFileName);
 
         public static readonly string localSourceTextFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), sourceTextFileName);
+
+        public static void WriteMinitabFile(string outputPath, List<Word> words)
+        {
+            if (words == null || words.Any(w => w == null))
+                throw new ArgumentNullException("words or a Word in words is equal to null");
+
+            using (StreamWriter writer = new StreamWriter(outputPath))
+            {
+                writer.WriteLine(minitabFileHeader);
+                foreach (Word w in words)
+                {
+                    writer.WriteLine(MinitabFileLine(w));
+                }
+            }
+        }
 
         private static string MinitabFileLine(Word word)
         {

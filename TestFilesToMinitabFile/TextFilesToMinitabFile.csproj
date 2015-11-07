@@ -7,8 +7,8 @@
     <ProjectGuid>{D80A4A8F-79B6-4B2A-BE1C-5D7374333867}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestFilesToMinitabFile</RootNamespace>
-    <AssemblyName>TestFilesToMinitabFile</AssemblyName>
+    <RootNamespace>TextFilesToMinitabFile</RootNamespace>
+    <AssemblyName>TextFilesToMinitabFile</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
