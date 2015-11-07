@@ -40,6 +40,7 @@ namespace TestBed
                     Console.WriteLine("\taverage letter freq:\t" + WordAnalyzer.AverageLetterFrequency(testWord));
                     Console.ResetColor();
                     Separator();
+                    WriteLineWithColor("\tStarts with Vowel:\t" + (WordAnalyzer.StartsWithVowel(testWord) ? "yes" : "no"), ConsoleColor.Green);
                     Console.WriteLine("\tvowels:\t\t\t" + WordAnalyzer.VowelCount(testWord));
                     Console.WriteLine("\tconsonants:\t\t" + WordAnalyzer.ConsonantCount(testWord));
                     Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -55,6 +56,13 @@ namespace TestBed
             }
 
             Console.WriteLine("Quitting...");
+        }
+
+        private static void WriteLineWithColor(string message, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
 
         static void Separator(bool bold = false)

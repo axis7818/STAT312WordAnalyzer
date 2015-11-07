@@ -379,5 +379,16 @@ namespace WordAnalyzerGUI
                 }
             }
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Regex editRemove = new Regex(@"(?:\[edit\])|(?:\[hide\])");
+            TB_SourceText.Text = editRemove.Replace(TB_SourceText.Text, "");
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(Words.Count.ToString());
+        }
     }
 }
