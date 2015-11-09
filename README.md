@@ -19,13 +19,30 @@ We want to analyze the complexity of words based on their source, proportion of 
 |![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Oct 14	|Project Proposal	|
 |![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Oct 19	|Complexity Analysis Completed|
 |![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Nov 2	|Data Collection Program Completed|
-|![Needs doing](http://www.corpsnedmanuals.us/images/ned-icon-red-exclamation-point.png)|Nov 2 |Met with Professor Smith to talk about Regression and Covariates|
-||Nov 9	|Project Update (Pilot Study and Power Analysis)|
+|![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Nov 2 |Met with Professor Smith to talk about Regression and Covariates|
+|![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Nov 9	|Project Update (Pilot Study and Power Analysis)|
 ||Nov 16	|Data for Final Project Collected in a Minitab File|
 ||Nov 30	|Presentation Completed and Practiced at least Once|
 ||Dec 7	|Final Presentation	|
 
 ## Updates
+
+#### 8 November 2015
+
+Hey Guys,
+
+I'm writing this after finishing up the Project Update, and I am super pleased with how the pilot study and power analysis turned out! However, it has become clear that factors other than Source are going to be difficult to deal with, and I think we need to give that some thought. Whether or not a word starts wtih a vowel works, but it does not really have a whole lot of meaning. 
+
+A couple suggestions that have come up have been the time that the text was written, and the intended audience of the text. Both of these seem like they would be very interesting questions to answer. I think that the best way to go about it is to split our study into 3 main parts. One focusing on Source, one on Date, and one on Intended Audience.
+
+* <emphasis>Source</emphasis> will include analysis between all sources that we gather data from, and there will be no focus on interation.
+* <emphasis>Date</emphasis> will only look at Novels and New York Times articles (I found an archive of articles that date back to 1851). This will include interaction analysis between date written and Novels vs. NYT article.
+* <emphasis>Intended Audience</emphasis> will only look at Wikipedia and Scholarly Journals. This will include interaction analysis between intended audience and wikipedia vs scholarly journals.
+
+There will have to be some minor changes to the software in order to take all this into account, but that will be easy to do. We will also want to start our data collection for this as soon as possible since we will need a lot of it.
+
+Thanks everyone!<br/>
+\- Cameron
 
 #### 1 November 2015
 
@@ -33,7 +50,7 @@ We want to analyze the complexity of words based on their source, proportion of 
 
 Hi guys, I have gotten the software to a point where it can be used to start to collect Data. Download and Extract the files above \(You may also need to download the [.NET framework](https://www.microsoft.com/en-us/download/confirmation.aspx?id=42643) if you haven't already\). The software only works on Windows. Make sure to provide a date for your source in the software, and uncheck the 'Use Date' box if you cannot find a date. It would be good if everyone could download that and start testing the software. If you have any questions, or find a problem with the software PLEASE LET ME KNOW!
 
-Last Wednesday, we also decided that each of us would gather data from an individual source, and it will be up to you individually to determine how to collect your data, just make sure that you are getting a valid random sample, and document your procedure for collecting data. I think a good target to shoot for would be about 1000 words from your source. 
+Last Wednesday, we also decided that each of us would gather data from an individual source, and it will be up to you individually to determine how to collect your data, just make sure that you are getting a valid random sample, and document your procedure for collecting data. I think a good target to shoot for would be about 1000 words from your source.
 
 |Name	|Source to Collect from	|
 |-------|-----------------------|
