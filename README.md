@@ -31,7 +31,10 @@ We want to analyze the complexity of words based on their source, proportion of 
 
 Hey Guys,
 
-##### Some clarification on what we are going to do for the rest of the project. 
+##### Some clarification on what we are going to do for the rest of the project
+Our project makes it hard to look at interaction factors accross the board because of the variety of sources that we are looking at. Date and Intended audience don't necessarily have the same prevalence in each source. As a result, we should split the project into the 3 sections clarified in the update bellow.
+
+Our initial pilot study required that we gathered a sample of 2199 words <strong>PER TREATMENT</strong>
 
 Thanks!<br/>
 \- Cameron
