@@ -34,19 +34,27 @@ Hey Guys,
 ##### Some clarification on what we are going to do for the rest of the project
 Our project makes it hard to look at interaction factors accross the board because of the variety of sources that we are looking at. Date and Intended audience don't necessarily have the same prevalence in each source. As a result, we should split the project into the 3 sections clarified in the update bellow.
 
-Our initial pilot study required that we gathered a sample of 2199 words per treatment. With the following factors and factor levels...
+Our initial pilot study required that we gathered a sample of 2199 words per treatment.
 
-- Source
-	- Wikipedia
-	- Scholarly Articles
-	- NYT articles
-	- Social Media
-	- Novels
+- Source (with minimum sample size, this is a multiple of 2199 depending on the amount of sub-treatments, each subtreatment will need a minimum of 2199 words)
+	- Wikipedia (4398 words)
+	- Scholarly Articles (4398 words)
+	- NYT articles (6597 words)
+	- Social Media (2199 words)
+	- Novels (6597 words)
 - Date (only for novels and NYT articles)
 	- After 1980\*
 	- between 1900\* and 1980\*
 	- before 1900\*
+- Topic (only for Wikipedia and Scholarly Journals)
+	- Hard Sciences (ex: Biology, Physics, Chemisty, Mathematics, Computer Science, etc.)
+	- Social Sciences (ex: Current Events, History, Sports, etc.)
 	
+I will be updating the software to be able to take topic into account, so hold off on taking that data for now.
+
+I think for now, it would be best if we had Khoa take data from Wikipedia and Scholarly Journals, Matt take data for Novels and NYT articles, and David take data from Social Media. I can then put it all together into one file and process it in minitab (it might be good to do the processing together so we all know what the results were). Let me know if you have any questions and/or if you need help gathering your data.
+
+It would be great if we got started with data collection this weekend!
 
 Thanks!<br/>
 \- Cameron
