@@ -52,7 +52,7 @@ Our initial pilot study required that we gathered a sample of 2199 words per tre
 	
 I will be updating the software to be able to take topic into account, so hold off on taking that data for now.
 
-I think for now, it would be best if we had Khoa take data from Wikipedia and Scholarly Journals, Matt take data for Novels and NYT articles, and David take data from Social Media. I can then put it all together into one file and process it in minitab (it might be good to do the processing together so we all know what the results were). Let me know if you have any questions and/or if you need help gathering your data.
+I think for now, it would be best if we had Khoa take data from Wikipedia and Scholarly Journals, Matt take data for Novels and NYT articles, and David take data from Social Media. I can then put it all together into one file and process it in minitab (it might be good to do the processing together so we all know what the results were). Let me know if you have any questions and/or if you need help gathering your data. Also, be sure to document how you gathered your data, just write out a simple step-by-step so that someone else can see how we got the data.
 
 It would be great if we got started with data collection this weekend!
 
