@@ -27,6 +27,15 @@ We want to analyze the complexity of words based on their source, proportion of 
 
 ## Updates
 
+#### 14 November 2015
+
+Hey Guys,
+
+##### Some clarification on what we are going to do for the rest of the project. 
+
+Thanks!<br/>
+\- Cameron
+
 #### 8 November 2015
 
 Hey Guys,
