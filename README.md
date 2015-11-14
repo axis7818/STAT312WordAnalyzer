@@ -47,9 +47,9 @@ I'm writing this after finishing up the Project Update, and I am super pleased w
 
 A couple suggestions that have come up have been the time that the text was written, and the intended audience of the text. Both of these seem like they would be very interesting questions to answer. I think that the best way to go about it is to split our study into 3 main parts. One focusing on Source, one on Date, and one on Intended Audience.
 
-* <emphasis>Source</emphasis> will include analysis between all sources that we gather data from, and there will be no focus on interation.
-* <emphasis>Date</emphasis> will only look at Novels and New York Times articles (I found an archive of articles that date back to 1851). This will include interaction analysis between date written and Novels vs. NYT article.
-* <emphasis>Intended Audience</emphasis> will only look at Wikipedia and Scholarly Journals. This will include interaction analysis between intended audience and wikipedia vs scholarly journals.
+* <strong>Source</strong> will include analysis between all sources that we gather data from, and there will be no focus on interation.
+* <strong>Date</strong> will only look at Novels and New York Times articles (I found an archive of articles that date back to 1851). This will include interaction analysis between date written and Novels vs. NYT article.
+* <strong>Intended Audience</strong> will only look at Wikipedia and Scholarly Journals. This will include interaction analysis between intended audience and wikipedia vs scholarly journals.
 
 There will have to be some minor changes to the software in order to take all this into account, but that will be easy to do. We will also want to start our data collection for this as soon as possible since we will need a lot of it.
 
