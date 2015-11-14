@@ -51,7 +51,7 @@ Our initial pilot study required that we gathered a sample of 2199 words per tre
 Thanks!<br/>
 \- Cameron
 
-\* These times can change, I just thought they would be interesting. Matt, please let me know whether or not the novels can be accessed for all of those dates.
+\* _These times can change, I just thought they would be interesting. Matt, please let me know whether or not the novels can be accessed for all of those dates._
 
 #### 8 November 2015
 
