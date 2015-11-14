@@ -25,6 +25,9 @@ We want to analyze the complexity of words based on their source, proportion of 
 ||Nov 30	|Presentation Completed and Practiced at least Once|
 ||Dec 7	|Final Presentation	|
 
+## Download
+You can download the most up to date version here: [Word Analyzer Files](http://www.mediafire.com/download/69ngg3zkks0leh0/WordAnalyzerDistribution.zip)
+
 ## Updates
 
 #### 14 November 2015
