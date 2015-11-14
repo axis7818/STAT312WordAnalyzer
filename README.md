@@ -34,10 +34,24 @@ Hey Guys,
 ##### Some clarification on what we are going to do for the rest of the project
 Our project makes it hard to look at interaction factors accross the board because of the variety of sources that we are looking at. Date and Intended audience don't necessarily have the same prevalence in each source. As a result, we should split the project into the 3 sections clarified in the update bellow.
 
-Our initial pilot study required that we gathered a sample of 2199 words <strong>PER TREATMENT</strong>
+Our initial pilot study required that we gathered a sample of 2199 words per treatment. With the following factors and factor levels...
+
+- Source
+	- Wikipedia
+	- Scholarly Articles
+	- NYT articles
+	- Social Media
+	- Novels
+- Date (only for novels and NYT articles)
+	- After 1980\*
+	- between 1900\* and 1980\*
+	- before 1900\*
+	
 
 Thanks!<br/>
 \- Cameron
+
+\* These times can change, I just thought they would be interesting. Matt, please let me know whether or not the novels can be accessed for all of those dates.
 
 #### 8 November 2015
 
