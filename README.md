@@ -11,7 +11,7 @@ We want to analyze the complexity of words based on their source, proportion of 
 * David Pieper
 * Khoa Nguyen 
 * Matt Seno
-* Brad Harris
+* Brad Harris (dropped)
 
 ## Schedule
 |Completed	|Date	|Item to Complete	|
