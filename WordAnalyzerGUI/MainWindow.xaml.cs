@@ -125,7 +125,8 @@ namespace WordAnalyzerGUI
         {
             // create the local file
             DataFileManager.WriteWordFile(Words/*.Distinct().ToList()*/);   // uncomment to filter for unique words
-
+            
+            // get the file name
             StringGetter stringGetter = new StringGetter("Enter a name for the file.");
             stringGetter.Owner = this;
             stringGetter.WindowStartupLocation = WindowStartupLocation.CenterOwner;
@@ -139,6 +140,7 @@ namespace WordAnalyzerGUI
             }
             else if (stringGetter.GotString == false)
                 return;
+
 
             try
             {
@@ -205,7 +207,7 @@ namespace WordAnalyzerGUI
             EnableLoadingFilm("Processing . . .");
             string sampleText = TB_RandomSample.Text;
 
-            // get source and add the source to the Sources list if it doesn't exist
+            // get source 
             string source = SourceText;
             if (string.IsNullOrWhiteSpace(source))
             {
@@ -219,6 +221,13 @@ namespace WordAnalyzerGUI
             if (DP_Date.IsEnabled)
             {
                 date = DP_Date.DisplayDate;
+            }
+
+            // get topic
+            string topic = "";
+            if (TB_Topic.IsEnabled)
+            {
+                topic = TB_Topic.Text;
             }
 
             await Task.Run(() => 
@@ -235,16 +244,14 @@ namespace WordAnalyzerGUI
                 // save the data
                 foreach(string word in sample)
                 {
-                    Word w = new Word(word, source, date);
-                    Words.Add(w);
-                    
+                    Word w = new Word(word, source, date, topic);
+                    Words.Add(w);                    
                 }
 
                 // sort the data
                 Words = Words.OrderBy(w => w.ToString()).ToList();
 
                 OnPropertyChanged("SessionWords");
-                //MessageBox.Show("Sample data was saved!", "Sample Saved", MessageBoxButton.OK, MessageBoxImage.None);
             });
 
             TB_RandomSample.Text = "";

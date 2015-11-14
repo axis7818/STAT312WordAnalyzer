@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordAnalyzerGUI"
         mc:Ignorable="d"
-        Title="Word Analyzer" MinHeight="200" MinWidth="400" Height="500" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}" Loaded="Window_Loaded" Icon="icon.ico">
+        Title="Word Analyzer" MinHeight="200" MinWidth="400" Height="800" Width="1000" Closing="Window_Closing" WindowStartupLocation="CenterScreen" DataContext="{Binding RelativeSource={RelativeSource Self}}" Loaded="Window_Loaded" Icon="icon.ico">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -28,6 +28,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Source Name: "/>
@@ -35,14 +36,18 @@
                          LostFocus="TB_Source_LostFocus"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
+                <CheckBox Name="CB_UseTopic" Content="Use Topic" VerticalAlignment="Center" Margin="0,0,10,0" IsChecked="False"/>
+                <TextBox Width="150" Name="TB_Topic" IsEnabled="{Binding Path=IsChecked, ElementName=CB_UseTopic}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3">
                 <TextBlock Text="Sample Size: "/>
                 <TextBox Width="100" Name="TB_SampleSize" Text="{Binding Path=SampleSize, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" 
                          LostFocus="TB_SampleSize_LostFocus" VerticalAlignment="Center"/>
-                <CheckBox VerticalAlignment="Center" Content="Proportion (%)" IsChecked="False" Margin="5" Name="CB_Proportion" 
+                <CheckBox VerticalAlignment="Center" Content="Proportion" IsChecked="False" Margin="5" Name="CB_Proportion" 
                           Checked="CB_Proportion_Changed" Unchecked="CB_Proportion_Changed"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
-                <CheckBox Name="CB_UseDate" Content="Use Date" VerticalAlignment="Center" Margin="0,0,10,0" IsChecked="True"/>
+                <CheckBox Name="CB_UseDate" Content="Use Date" VerticalAlignment="Center" Margin="0,0,10,0" IsChecked="False"/>
                 <DatePicker Name="DP_Date" IsEnabled="{Binding Path=IsChecked, ElementName=CB_UseDate}" Width="150"/>
             </StackPanel>
         </Grid>

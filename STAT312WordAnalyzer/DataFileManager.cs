@@ -12,7 +12,7 @@ namespace STAT312WordAnalyzer
 
         public const string sourceTextFileName = "SourceText.txt";
 
-        private const string minitabFileHeader = "Word\tSource\tDate\tComplexity\tLogComplexity\tLength\tUniquenessFactor\tUniqueChars\tVowels\tVowelProportion\tConsonants\tConsonantProportion\tFirstLetter\tStartsWithVowel";
+        private const string minitabFileHeader = "Word\tSource\tDate\tTopic\tComplexity\tLogComplexity\tLength\tUniquenessFactor\tUniqueChars\tVowels\tVowelProportion\tConsonants\tConsonantProportion\tFirstLetter\tStartsWithVowel";
 
         public static readonly string localWordsFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), wordsFileName);
 
@@ -46,7 +46,7 @@ namespace STAT312WordAnalyzer
             }
             catch (IndexOutOfRangeException) { firstChar = null; }
 
-            string result = word.ToString() + "\t" + word.Source + "\t" + word.SourceDateString + "\t" + complexity + "\t" + Math.Log10(complexity) + "\t" + length +
+            string result = word.ToString() + "\t" + word.Source + "\t" + word.SourceDateString + "\t" + word.Topic + "\t" + complexity + "\t" + Math.Log10(complexity) + "\t" + length +
                 "\t" + WordAnalyzer.UniquenessFactor(word) + "\t" + word.UniqueChars + "\t" + vowelCount + "\t" + (vowelCount / (float)length) + "\t" + consonantCount +
                 "\t" + (consonantCount / (float)length) + "\t" + (firstChar.ToString() ?? "") + "\t" + (WordAnalyzer.StartsWithVowel(word) ? "yes" : "no");
             return result;
@@ -62,7 +62,7 @@ namespace STAT312WordAnalyzer
             }
             catch (FormatException) { }
 
-            return new Word(tokens[0], tokens[1], dateTime);
+            return new Word(tokens[0], tokens[1], dateTime, tokens[3]);
         }
 
         public static void CopyFileToDesktop(string fileName, bool force = false)

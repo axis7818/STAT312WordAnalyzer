@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
 namespace STAT312WordAnalyzer
 {
     public class Word : IEnumerable
     {
-        private string _word;
-        
-        private string _source;
-        
+        private string _word;        
+        private string _source;        
         private DateTime? _sourceDate;
-        
+        private string _topic;  
         private HashSet<char> Chars = new HashSet<char>();
 
         public Word() { }
-
-        public Word(string word, string source = null, DateTime? sourceDate = null)
+        public Word(string word, string source = null, DateTime? sourceDate = null, string topic = "")
         {
             _word = WordAnalyzer.FormatWord(word);
             Source = source;
             SourceDate = sourceDate;
+            Topic = topic;
 
             // add the characters to the Chars HashSet
             for (int i = 0; i < _word.Length; i++)
@@ -55,6 +52,19 @@ namespace STAT312WordAnalyzer
             set
             {
                 _sourceDate = value;
+            }
+        }
+
+        [XmlAttribute()]
+        public string Topic
+        {
+            get
+            {
+                return _topic;
+            }
+            set
+            {
+                _topic = value;
             }
         }
 
