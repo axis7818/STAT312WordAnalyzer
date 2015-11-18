@@ -40,7 +40,7 @@ namespace STAT312WordAnalyzer
                     return DateCategories.NONE;
                 else if (_sourceDate < DateCategories._1900)
                     return DateCategories.EARLY;
-                else if (_sourceDate < DateCategories._1980)
+                else if (_sourceDate < DateCategories._1960)
                     return DateCategories.MIDDLE;
                 else if (_sourceDate < DateTime.Now)
                     return DateCategories.LATE;

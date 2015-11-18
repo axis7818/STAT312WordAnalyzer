@@ -12,7 +12,7 @@ namespace STAT312WordAnalyzer
 
         public const string sourceTextFileName = "SourceText.txt";
 
-        private const string minitabFileHeader = "Word\tSource\tDate\tTopic\tComplexity\tLogComplexity\tLength\tUniquenessFactor\tUniqueChars\tVowels\tVowelProportion\tConsonants\tConsonantProportion\tFirstLetter\tStartsWithVowel\tDateCategory";
+        public const string minitabFileHeader = "Word\tSource\tDate\tTopic\tComplexity\tLogComplexity\tLength\tUniquenessFactor\tUniqueChars\tVowels\tVowelProportion\tConsonants\tConsonantProportion\tFirstLetter\tStartsWithVowel\tDateCategory";
 
         public static readonly string localWordsFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), wordsFileName);
 
