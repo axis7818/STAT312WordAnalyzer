@@ -26,7 +26,7 @@ namespace TextFilesToMinitabFile
             /* Find out if all words should be used */
             if(args.Length > 0)
             {
-                if (args.Contains("full"))
+                if (args.Contains("full") || args.Contains("all"))
                     AllText = true;
             }
 
