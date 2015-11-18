@@ -29,6 +29,27 @@ namespace STAT312WordAnalyzer
         }
 
         [XmlIgnore()]
+        public string DateCategory
+        {
+            get
+            {
+                if (_sourceDate == null)
+                    return DateCategories.NONE;
+
+                if (_sourceDate < DateCategories._1850)
+                    return DateCategories.NONE;
+                else if (_sourceDate < DateCategories._1900)
+                    return DateCategories.EARLY;
+                else if (_sourceDate < DateCategories._1980)
+                    return DateCategories.MIDDLE;
+                else if (_sourceDate < DateTime.Now)
+                    return DateCategories.LATE;
+                else
+                    return DateCategories.NONE;
+            }
+        }
+
+        [XmlIgnore()]
         public string SourceDateString
         {
             get
