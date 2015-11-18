@@ -18,9 +18,18 @@ namespace TextFilesToMinitabFile
         private static int SampleSize = 0;
         private static int ProcessedFiles = 0;
         private static string Source = null;
+        private static string Topic = null;
+        private static bool AllText = false;
 
         static void Main(string[] args)
         {
+            /* Find out if all words should be used */
+            if(args.Length > 0)
+            {
+                if (args.Contains("full"))
+                    AllText = true;
+            }
+
             /* Introduction Message */
             Console.WriteLine("--------------------------------------------------------------------------------------------");
             Console.WriteLine("This program will process text files in the directory: " + textFilesDirectory);
@@ -34,15 +43,27 @@ namespace TextFilesToMinitabFile
             Console.Write("Enter the source that the files were pulled from: ");
             Source = Console.ReadLine();
 
+            /* Get the topic of the word */
+            Console.Write("Enter the topic of the text (Enter for no topic): ");
+            Topic = Console.ReadLine();
+
+
             /* Get the sample size from the user */
-            Console.Write("Enter the sample size to collect from each file: ");
-            string userInput = Console.ReadLine();
-            if(!int.TryParse(userInput, out SampleSize))
+            if (!AllText)
             {
-                WriteWithColor("Invalid Sample Size. Ending Program...", ConsoleColor.Red);
-                return;
+                Console.Write("Enter the sample size to collect from each file: ");
+                string userInput = Console.ReadLine();
+                if(!int.TryParse(userInput, out SampleSize))
+                {
+                    WriteWithColor("Invalid Sample Size. Ending Program...", ConsoleColor.Red);
+                    return;
+                }
+                Console.WriteLine("The sample size [" + SampleSize + "] will be used to get words from [" + Source + "].\n");
             }
-            Console.WriteLine("The sample size [" + SampleSize + "] will be used to get words from [" + Source + "].\n");
+            else
+            {
+                SampleSize = 100; // set to 100% if getting all text
+            }
 
             /* Start the program */
             Console.WriteLine("Processing files...\n");
@@ -87,9 +108,9 @@ namespace TextFilesToMinitabFile
                     }
 
                     /* Get a sample of the words */
-                    foreach(string word in Sampler.GetSample(sourceWords, SampleSize, false))
+                    foreach(string word in Sampler.GetSample(sourceWords, SampleSize, AllText))
                     {
-                        sampleWords.Add(new Word(word, Source, dateTime));
+                        sampleWords.Add(new Word(word, Source, dateTime, Topic));
                     }
 
                     /* increment the # of processed files */
