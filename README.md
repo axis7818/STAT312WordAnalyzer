@@ -111,7 +111,7 @@ Since there is a heavy emphasis on coding for the project, it is great that we h
 
 Khoa has agreed to reserve a fishbowl in the library from 2-4 every wednesday for us. We can use that as time to work on the project, work on stats homework, or study for midterms. This will start on the 21st. This is not the only time that we can meet, and other times can be arranged if needed, but with 5 people it is difficult to find a time that works for everyone.
 
-I also posted a schedule with a basic outline of tasks we should complete. Hopefuly we can keep to it and be done a week before the final presentation. By next Monday, I think it would be awesome to have our complexity algorithm figured out, so let me know if people have suggestions on what parameters make a word less or more complex.
+I also posted a schedule with a basic outline of tasks we should complete. Hopefuly we can keep to it and be done a week before the final presentation. By next Monday, I think it would be awesome to have our complexity algorithm figured out, so let me know if people have suggestions on what paraeters make a word less or more complex.
 
 It would also be great if people could come up with some ideas for how to get random text from Twitter, Scholarly Journals, Wikipedia, Reddit, and any other sources you can think of (the more the better). The links at the bottom of this post have our current ideas.
 
