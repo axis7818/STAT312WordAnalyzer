@@ -52,7 +52,9 @@ namespace STAT312WordAnalyzer
         private static List<string> GetSampleWithSize(List<string> source, int size)
         {
             if (size > source.Count)
-                throw new ArgumentException("Sample size (" + size.ToString() + ") must be smaller than the source count.");
+                size = source.Count;
+            if (size < 0)
+                size = 0;
 
             List<string> input = new List<string>(source);
             List<string> result = new List<string>();

@@ -20,6 +20,7 @@ namespace TextFilesToMinitabFile
         private static string Source = null;
         private static string Topic = null;
         private static bool AllText = false;
+        private static int? TotalGoal = null;
 
         static void Main(string[] args)
         {
@@ -47,6 +48,17 @@ namespace TextFilesToMinitabFile
             Console.Write("Enter the topic of the text (Enter for no topic): ");
             Topic = Console.ReadLine();
 
+            /* Get the total number of words to get */
+            Console.Write("How many words do you want in total (Enter for no limit): ");
+            string input = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(input))
+            {
+                int totalGoal;
+                if (!int.TryParse(input, out totalGoal))
+                    TotalGoal = null;
+                else
+                    TotalGoal = totalGoal;
+            }
 
             /* Get the sample size from the user */
             if (!AllText)
@@ -111,6 +123,10 @@ namespace TextFilesToMinitabFile
                     foreach(string word in Sampler.GetSample(sourceWords, SampleSize, AllText))
                     {
                         sampleWords.Add(new Word(word, Source, dateTime, Topic));
+                        if(TotalGoal != null && sampleWords.Count >= TotalGoal)
+                        {
+                            goto END;
+                        }
                     }
 
                     /* increment the # of processed files */
@@ -121,6 +137,8 @@ namespace TextFilesToMinitabFile
                     WriteWithColor(fileName + " was skipped because it is not a text file.", ConsoleColor.Yellow);   
                 }
             }
+
+END:
 
             /* Write the results file */
             sampleWords = sampleWords.OrderBy(w => w.ToString()).ToList();
