@@ -21,14 +21,28 @@ We want to analyze the complexity of words based on their source, proportion of 
 |![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Nov 2	|Data Collection Program Completed|
 |![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Nov 2 |Met with Professor Smith to talk about Regression and Covariates|
 |![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Nov 9	|Project Update (Pilot Study and Power Analysis)|
-||Nov 16	|Data for Final Project Collected in a Minitab File|
+|![yes](http://img1.wikia.nocookie.net/__cb20100621101726/asheron/images/1/1d/Green_Check_Mark_Icon.png)|Nov 16	|Data for Final Project Collected in a Minitab File|
 ||Nov 30	|Presentation Completed and Practiced at least Once|
 ||Dec 7	|Final Presentation	|
 
 ## Download
-You can download the most up to date version here: [Word Analyzer Files](http://www.mediafire.com/download/cf880cw5gisod1a/GUIDist.zip)
+
+The Minitab file with the final data can be downloaded here: [Final Data](http://www.mediafire.com/download/8i07r1vf21m9zsn/WordComplexityData.MPJ)
+
+You can download the most up to date version of the Data taking software here: [Word Analyzer Files](http://www.mediafire.com/download/cf880cw5gisod1a/GUIDist.zip)
 
 ## Updates
+
+#### 26 November 2015
+
+The data is finally collected and in a Minitab file waiting to be analyzed! You can download the minitab file above. That file has 3 worksheets in it (one for Topic, one for date, and one with all of the data combined.) This will make it easier to isolate the individual sub-studies that we are working on without having to deal with unstacking the columns of 36672 total words.
+
+Since it is Thanksgiving break, and we only have a couple weeks to finish this project, I think it would be awesome to make some more progress. Personally, I will be super busy during the last couple weeks of school, and wont have a ton of time to work on the project, so I am going to analyze the data as much as I can during the break. When I get to the point where we can start working on a final presentation, we should start that as soon as possible.
+
+Next week when we meet on Wednesday, I hope to have the data fully analyzed and we can go over it all together. I think we will have to practice our presentation on the weekend before finals week.
+
+Happy Thanksgiving!<br/>
+\- Cameron
 
 #### 14 November 2015
 
