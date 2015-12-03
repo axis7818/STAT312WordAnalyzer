@@ -33,7 +33,7 @@ namespace STAT312WordAnalyzer
             }
         }
 
-        private static string MinitabFileLine(Word word)
+        public static string MinitabFileLine(Word word)
         {
             int length = word.Length;
             float complexity = WordAnalyzer.WordComplexity(word);
@@ -52,7 +52,7 @@ namespace STAT312WordAnalyzer
             return result;
         }
 
-        private static Word MinitabFileLine(string line)
+        public static Word MinitabFileLine(string line)
         {
             string[] tokens = line.Split('\t');
             DateTime? dateTime = null;

@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFilesToMinitabFile", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinitabFileConcatenate", "MinitabFileConcatenate\MinitabFileConcatenate.csproj", "{65C5328C-56AA-4657-9C8D-22E5C4A10FB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordVerifier", "WordVerifier\WordVerifier.csproj", "{2A376824-A4DC-4185-B135-1992F05957C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{65C5328C-56AA-4657-9C8D-22E5C4A10FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C5328C-56AA-4657-9C8D-22E5C4A10FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65C5328C-56AA-4657-9C8D-22E5C4A10FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A376824-A4DC-4185-B135-1992F05957C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A376824-A4DC-4185-B135-1992F05957C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A376824-A4DC-4185-B135-1992F05957C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A376824-A4DC-4185-B135-1992F05957C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
