@@ -27,6 +27,8 @@ We want to analyze the complexity of words based on their source, proportion of 
 
 ## Download
 
+Download the [Final Data](http://www.mediafire.com/download/xy8o7pqq8qb59pm/FINAL_SCANNED_DATA.zip) Files
+
 Presentation Results: [Here](http://www.mediafire.com/view/jk2bdy2yw4ucq0n/Results.docx)
 
 The Minitab file with the final data can be downloaded here: [Final Data](http://www.mediafire.com/download/8i07r1vf21m9zsn/WordComplexityData.MPJ)
