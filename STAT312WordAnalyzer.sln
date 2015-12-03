@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinitabFileConcatenate", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordVerifier", "WordVerifier\WordVerifier.csproj", "{2A376824-A4DC-4185-B135-1992F05957C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinitabFileSplitter", "MinitabFileSplitter\MinitabFileSplitter.csproj", "{5AF21075-FC3D-4332-9C75-7916553A3883}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{2A376824-A4DC-4185-B135-1992F05957C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A376824-A4DC-4185-B135-1992F05957C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A376824-A4DC-4185-B135-1992F05957C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AF21075-FC3D-4332-9C75-7916553A3883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF21075-FC3D-4332-9C75-7916553A3883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF21075-FC3D-4332-9C75-7916553A3883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AF21075-FC3D-4332-9C75-7916553A3883}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
